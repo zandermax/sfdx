@@ -9,6 +9,8 @@ npm i sfdx-ez --save
 ```
 
 ## Examples
+(Sample project [here](https://github.com/axlemax/sfdx-ez-example).)
+
 Here is a function that one might use to spin up an org and push code into it:
 ````javascript
 const dxez = require('sfdx-ez')
