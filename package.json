@@ -1,6 +1,6 @@
 {
   "name": "sfdx-ez",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Performs Salesforce DX operations with ease! Life is good.",
   "main": "index.js",
   "scripts": {
