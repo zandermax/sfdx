@@ -13,14 +13,14 @@ Here is a function that one might use to spin up an org and push code into it:
 ````javascript
 const dxez = require('sfdx-ez')
 
-// argv - all options to use for the relevant commands (see sfdx-ez API)
-function spinup(argv) {
+// options - all options to use for the relevant commands (see sfdx-ez config documentation)
+function spinup(options) {
   // Create a new scratch org
-  dxez.create(argv)
+  dxez.create(options)
   // Push local code into the newly-created scratch org
-  dxez.push(argv)
+  dxez.push(options)
   // Open the newly-created scratch org in a browser window
-  dxez.open(argv)
+  dxez.open(options)
 }
 ````
 
@@ -28,12 +28,12 @@ As another example, here is a function that pulls code from a scratch org, conve
 ````javascript
 const dxez = require('sfdx-ez')
 
-// argv - all options to use for the relevant commands (see sfdx-ez API)
-function toproduction(argv) {
+// options - all options to use for the relevant commands (see sfdx-ez config documentation)
+function toproduction(options) {
   // Pull code from the scratch org
-  dxez.pull(argv)
+  dxez.pull(options)
   // Convert local Salesforce DX code into Metatdata API format
-  dxez.convert(argv)
+  dxez.convert(options)
   // Deploy the formatted code into a non-scratch org named 'MySandbox'
   dxez.deploy({
     deployto: 'MySandbox'
