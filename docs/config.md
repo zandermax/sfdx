@@ -2,6 +2,8 @@
 
 All values may be overridden by placing any file in your projects `'config'` directory with a name containing `'sfdx-ez'` (e.g. `'config/sfdx-ez.js'` or `'config/sfdx-ez-default.json'`, etc.)
 
+This uses the [config](https://github.com/lorenwest/node-config) package, so follow the guidelines for configuration files outlined by its documentation (i.e., make sure to export values if using a javascript file, etc.).
+
 ## dxSourceDir *[ string ]*: Default Salesforce DX project source path
   _*DEFAULT*_: config.projectPath + '/force-app/main/default'
 
