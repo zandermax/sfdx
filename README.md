@@ -48,7 +48,7 @@ function toproduction(argv) {
 
   > All of the commands have a relevant terminal command (*including shortcuts!*), thanks to [yargs](https://github.com/yargs/yargs). To import all of them, simply use the "yargs" property of each to create the relevant command.
 
-For example, to import all of the commands, do the following (ensure you have yargs installed):
+For example, to import all of the commands, do the following (ensure you have [yargs](https://github.com/yargs/yargs) installed):
 
 ````javascript
 #!/usr/bin/env node
@@ -76,7 +76,7 @@ Then, if you save that file as `"cli.js"` and you add something like the followi
 ...
 ````
 ## Help / Documentation
-** [For help with the node commands, check the API here](/docs/api.md).
-** [For reference to the configuration values, see here](/docs/config.md).
+* [Node command API reference here](/docs/api.md).
+* [Configuration values reference here](/docs/config.md).
 
 ** For help with the terminal commands, which includes seeing a command's shortcuts, use `--help` (or `-h`) on any command. To see help for ALL commands, use `--help` (or `-h`) on the root command (for example `dx -h`)!
