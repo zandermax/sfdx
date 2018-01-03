@@ -14,5 +14,14 @@
   "license": "MIT",
   "engines": {
     "node": ">=8.0.0"
+  },
+  "dependencies": {
+    "config": "^1.29.0",
+    "fs": "0.0.1-security",
+    "inquirer": "^4.0.2",
+    "jsonfile": "^4.0.0",
+    "path": "^0.12.7",
+    "shelljs": "^0.7.8",
+    "xml2js": "^0.4.19"
   }
 }
