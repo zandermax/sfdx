@@ -73,7 +73,7 @@ Then, if you save that file as `"cli.js"` and you add something like the followi
 ...
 ````
 ## Help / Documentation
-* [Node command API reference here](/docs/api.md).
-* [Configuration values reference here](/docs/config.md).
+* [Node command API reference here](https://github.com/axlemax/sfdx-ez/blob/master/docs/api.md).
+* [Configuration values reference here](https://github.com/axlemax/sfdx-ez/blob/master/docs/config.md).
 
 ** For help with the terminal commands, which includes seeing a command's shortcuts, use `--help` (or `-h`) on any command. To see help for ALL commands, use `--help` (or `-h`) on the root command (for example `dx -h`)!
