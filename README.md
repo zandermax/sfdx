@@ -46,7 +46,7 @@ function toproduction(argv) {
 
 ## To import all commands to be used in a CLI
 
-  > All of the commands have a relevant terminal command (*including shortcuts!*), thanks to [yargs](https://github.com/yargs/yargs). To import all of them, simply use the "yargs" property of each to create the relevant command.
+  > All of the commands have a relevant terminal command (*including shortcuts!*), thanks to [yargs](https://github.com/yargs/yargs). To import all of them, simply use the `.yargs` property of each to create the relevant command.
 
 For example, to import all of the commands, do the following (ensure you have [yargs](https://github.com/yargs/yargs) installed):
 
