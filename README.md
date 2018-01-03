@@ -1,9 +1,6 @@
 # sfdx-ez
 
-> sfdx-ez is a node module used to interact with Salesforce DX commands, hopefully in a more intuitive way than with the DX CLI itself.
-
-
-sfdx-ez is meant to take some of the nuances of using Salesforce DX and make common operations easier.
+sfdx-ez is a node module used to interact with Salesforce DX commands, hopefully in a more intuitive way than with the DX CLI itself. sfdx-ez is meant to take some of the nuances of using Salesforce DX and make common operations easier.
 
 ## Installation
 
@@ -27,7 +24,7 @@ function spinup(argv) {
 }
 ````
 
-As another example, here is a function that pulls code from a scratch org, converts the local Salesforce DX code into Metadata API format, and deploys the converted code into a production (i.e. non-scratch) org
+As another example, here is a function that pulls code from a scratch org, converts the local Salesforce DX code into Metadata API format, and deploys the converted code into a production (i.e. non-scratch) org.
 ````javascript
 const dxez = require('sfdx-ez')
 
