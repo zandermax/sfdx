@@ -5,11 +5,11 @@ Also see configuration values [here](/docs/config.md).
 
   `result: {`
 
-  **code:** _[ string ]_ : - exit code of shell commands that were executed
+  `code: [ string ] : - exit code of shell commands that were executed`
 
-  **stdout:** _[ string ]_ : - stdout result of shell commands that were executed
+  `stdout: [ string ] : - stdout result of shell commands that were executed`
 
-  **stderr:** _[ string ]_ : - stderr result of shell commands that were executed
+  `stderr: [ string ] : - stderr result of shell commands that were executed`
 
   `}`
 
