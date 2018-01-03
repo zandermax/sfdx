@@ -18,7 +18,7 @@
   },
   "author": "Zander Maxwell",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/reedhein/reedhein-sfdx#readme",
+  "homepage": "https://github.com/axlemax/sfdx-ez/blob/master/README.md",
   "engines": {
     "node": ">=8.0.0"
   },
