@@ -11,5 +11,8 @@
     "SFDX"
   ],
   "author": "Zander Maxwell",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.0.0"
+  }
 }
