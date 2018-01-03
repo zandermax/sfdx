@@ -8,11 +8,17 @@
   },
   "keywords": [
     "CLI",
+    "Salesforce",
     "SalesforceDX",
     "SFDX"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axlemax/sfdx-ez.git"
+  },
   "author": "Zander Maxwell",
   "license": "MIT",
+  "homepage": "https://bitbucket.org/reedhein/reedhein-sfdx#readme",
   "engines": {
     "node": ">=8.0.0"
   },
