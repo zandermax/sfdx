@@ -1,4 +1,4 @@
-Also see configuration values [here](/docs/config.md).
+Also see configuration values [here](https://github.com/axlemax/sfdx-ez/blob/master/docs/config.md).
 
 ## __ALL COMMANDS:__
 ###  _`RETURN VALUE`_ - All functions return a [shelljs](https://github.com/yargs/yargs) object:
@@ -23,14 +23,14 @@ Also see configuration values [here](/docs/config.md).
   `options.force` *[ boolean ]* - Do not confirm deletion of orgs
 
 ## convert( _options_ ): Convert local DX code into metadata format.
-  `options.outputdirectory` *[ string ]* - Directory to use for converted code output ( _*DEFAULT*_: _config.mdApiDir_ )
+  `options.outputdirectory` *[ string ]* - Directory to use for converted code output ( _*DEFAULT*_: [_config.mdApiDir_](https://github.com/axlemax/sfdx-ez/blob/master/docs/config.md) )
 
 ## create( _options_ ): Create new scratch org(s).
   `options.alias | options.alias[]` *[ string | string[ ] ]* - Alias(es) of the org(s) to create
 
   `options.days` *[ integer ]* - Number of days before the org expires (max 30)
 
-  `options.definitionfile` *[ string ]* - Definition file to use when creating the org ( _*DEFAULT*_: _config.scratchDefFile_ )
+  `options.definitionfile` *[ string ]* - Definition file to use when creating the org ( _*DEFAULT*_: [_config.scratchDefFile_](https://github.com/axlemax/sfdx-ez/blob/master/docs/config.md) )
 
 ## delete( _orgList_, _options_ ): Deletes scratch org(s).
   **[REQUIRED]** `orgList | orgList[]` *[ string | string[ ] ]*- Alias(es) (or username(s)) of the org(s) to delete
@@ -40,7 +40,7 @@ Also see configuration values [here](/docs/config.md).
 ## deploy( _options_ ): Deploys metadata code into an org.
   `options.alias` *[ string ]* - Alias of the org to deploy code into
 
-  `options.outputdirectory` *[ string ]* - Directory containing the Metadata API source code to deploy ( _*DEFAULT*_: _config.mdApiDir_ )
+  `options.outputdirectory` *[ string ]* - Directory containing the Metadata API source code to deploy ( _*DEFAULT*_: [_config.mdApiDir_](https://github.com/axlemax/sfdx-ez/blob/master/docs/config.md) )
 
 ## deployFlows( _options_ ): Deploys the flows to an org, ensuring that only one version is deployed and active.
   `options.alias` *[ string ]* - Alias of the org to deploy code into
@@ -59,9 +59,9 @@ Also see configuration values [here](/docs/config.md).
   `options.sandbox` *[ boolean ]* - Specifies if the org being logged into is a sandbox ( _*DEFAULT*_: false)
 
 ## newProject( _options_ ): Creates a new Salesforce DX project.
-  `options.outputdirectory` *[ string ]* - Directory in which to create the new Salesforce DX project ( _*DEFAULT*_: _config.projectPath_ )
+  `options.outputdirectory` *[ string ]* - Directory in which to create the new Salesforce DX project ( _*DEFAULT*_: [_config.projectPath_](https://github.com/axlemax/sfdx-ez/blob/master/docs/config.md) )
 
-  `options.projectname` *[ string ]* - Name of the new project to create ( _*DEFAULT*_: _config.projectDir_ )
+  `options.projectname` *[ string ]* - Name of the new project to create ( _*DEFAULT*_: [_config.projectDir_](https://github.com/axlemax/sfdx-ez/blob/master/docs/config.md) )
 
 ## open( _options_ ): Opens the setup page of a connected org in a web browser.
   `options.alias` *[ string ]* - Alias of the org to open in the browser
