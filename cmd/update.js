@@ -9,14 +9,15 @@ const shell = require('shelljs')
 
 module.exports = {
   desc: 'Updates the local verison of SFDX CLI and documentation.',
-  command: ['update [nolocal|n]'],
+  command: ['update [nolocalhelp|nolocal|n]'],
   aliases: ['u'],
 
   builder: yargs => {
     yargs
-      .option('nolocal', {
-        alias: ['n'],
-        describe: 'Do not store local help files'
+      .option('nolocalhelp', {
+        alias: ['nolocal', 'n'],
+        describe: 'Do not store local help files',
+        type: 'boolean'
       })
       .option('quiet', {
         alias: ['q'],
