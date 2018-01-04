@@ -30,9 +30,9 @@ module.exports = {
 
     if (!argv.quiet) {
       console.log('Getting user info for ' + (alias ? "'" + alias + "'" : 'default org') + '...')
+      console.log()
     }
 
-    console.log()
     const result = shell.exec(userInfoCommand)
 
     return result

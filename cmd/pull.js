@@ -39,7 +39,7 @@ module.exports = {
     if (force) pullCommand += ' --forceoverwrite'
     if (alias) pullCommand += ' --targetusername ' + alias
 
-    console.log()
+    if (!argv.quiet) console.log()
     const result = shell.exec(pullCommand)
 
     return result

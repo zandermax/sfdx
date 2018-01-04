@@ -71,7 +71,7 @@ async function outputFile () {
   if (result.stderr) {
     console.error(err('Unable to complete update.'))
   } else {
-    console.log('Update completed.')
+    if (!argv.quiet) console.log('Update completed.')
   }
 
   return result

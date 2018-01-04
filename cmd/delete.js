@@ -51,9 +51,7 @@ module.exports = {
 }
 
 function problemsHappened (argv, error) {
-  if (!argv.quiet) {
-    console.error(err('Deletion failed.'))
-  }
+  console.error(err('Deletion failed.'))
   return error
 }
 

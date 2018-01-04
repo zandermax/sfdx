@@ -39,7 +39,7 @@ module.exports = {
       console.log('Deploying metadata into' + (alias ? " '" + alias + "'" : ' default org') + '...')
     }
 
-    console.log()
+    if (!argv.quiet) console.log()
 
     let numResults = 0
     const results = []

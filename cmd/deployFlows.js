@@ -50,8 +50,10 @@ module.exports = {
     let results = []
 
     /* (Step 1) Push code to org first, to ensure correct flow version is active */
-    if (!argv.fromPush) console.log('Beginning code push...')
-    console.log()
+    if (!argv.quiet) {
+      if (!argv.fromPush) console.log('Beginning code push...')
+      console.log()
+    }
     results[numResults++] = pushCode(argv)
 
     /* (Step 2) Next, delete any non-active flow definition files */
@@ -128,7 +130,7 @@ const getfilesToDelete = async argv => {
         })
     } catch (fileError) {
       console.error(config.get('stars') + 'ERROR:' + config.get('stars'))
-      console.log(fileError)
+      console.error(fileError)
       process.exit(1)
     }
   } else {
@@ -155,7 +157,7 @@ const getfilesToDelete = async argv => {
 
   let flowFile = ''
   let flowsToKeep = config.get('oldFlowsToKeep')
-  console.log('numflows', flowsToKeep)
+
   if (isNaN(flowsToKeep)) {
     console.error(err('Invalid number of flow specified in configuration.'))
     process.exit(1)
@@ -223,7 +225,7 @@ const pushCode = argv => {
 
   const result = shell.exec(pushCommand)
   if (result.stderr || result.stdout.indexOf('ERROR') != -1) {
-    console.log()
+    if (!argv.quiet) console.log()
     console.error(err('Could not deploy code. Check that the active flow versions have not been modified or deleted.'))
     process.exit(1)
   }

@@ -65,7 +65,7 @@ module.exports = {
     })
 
     if (!areOrgsToDelete) {
-      console.log('No un-named non-default scratch orgs.')
+      if (!argv.quiet) console.log('No un-named non-default scratch orgs.')
       return
     }
 

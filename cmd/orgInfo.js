@@ -39,9 +39,9 @@ module.exports = {
 
     if (!argv.quiet) console.log('Getting org info for ' + (alias ? "'" + alias + "'" : 'default org') + '...')
 
-    console.log()
+    if (!argv.quiet) console.log()
     let result = shell.exec(orgInfoCommand)
-    console.log()
+    if (!argv.quiet) console.log()
 
     if (argv.user) {
       result = getResults([result, userInfo(argv)])

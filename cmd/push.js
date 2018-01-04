@@ -41,8 +41,10 @@ module.exports = {
     let numResults = 0
     const results = []
 
-    if (!argv.quiet) console.log('Pushing code into ' + (argv.pushto ? "'" + argv.pushto + "'" : 'default org') + '...')
-    console.log()
+    if (!argv.quiet) {
+      console.log('Pushing code into ' + (argv.pushto ? "'" + argv.pushto + "'" : 'default org') + '...')
+      console.log()
+    }
 
     if (argv.noflows) {
       let pushCommand = 'sfdx force:source:push'
@@ -51,7 +53,6 @@ module.exports = {
 
       results[numResults++] = await shell.exec(pushCommand)
       if (results[numResults - 1].stderr || results[numResults - 1].stdout.indexOf('ERROR') != -1) {
-        console.log()
         console.error(
           err('Could not deploy code. Check that the active flow versions have not been modified or deleted.')
         )

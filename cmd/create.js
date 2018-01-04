@@ -84,7 +84,7 @@ function createOrg (orgname, argv) {
   } else {
     if (!argv.quiet) console.log('Generating user password' + (alias ? " for org '" + alias + "'" : '') + '...')
     results[numResults++] = shell.exec('sfdx force:user:password:generate > /dev/null')
-    console.log()
+    if (!argv.quiet) console.log()
   }
 
   return getResults(results)
