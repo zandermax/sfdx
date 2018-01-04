@@ -15,6 +15,8 @@ Also see configuration values [here](https://github.com/axlemax/sfdx/blob/master
   These options can be applied to any command:
 
   `options.quiet` *[ boolean ]* - Supress output
+
+## Command Reference
 ***
 ### clearOrgs( _options_ )
 >Deletes all non-default scratch orgs without given aliases.
