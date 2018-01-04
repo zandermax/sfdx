@@ -9,31 +9,40 @@ const shell = require('shelljs')
 
 module.exports = {
   desc: 'Updates the local verison of SFDX CLI and documentation.',
-  command: ['update'],
+  command: ['update [nolocal|n]'],
   aliases: ['u'],
 
   builder: yargs => {
     yargs
+      .option('nolocal', {
+        alias: ['n'],
+        describe: 'Do not store local help files'
+      })
       .option('quiet', {
         alias: ['q'],
-        describe: 'Quiet mode'
+        describe: 'Quiet mode',
+        type: 'boolean'
       })
   },
 
   handler: argv => {
-    const helpFile = joinPath(config.get('projectPath'), 'docs/sfdx-help.txt')
-    const refFile = joinPath(config.get('projectPath'), 'docs/sfdx-ref.txt')
-    shell.exec('sfdx update')
-
-    if (!argv.quiet) console.log('Updating SFDX CLI reference file...')
-    shell.exec('sfdx force:doc:commands:list > ' + refFile)
-
     let numResults = 0
     const results = []
-    results[numResults++] = outputFile()
 
-    if (!argv.quiet) console.log('Updating SFDX CLI help file...')
-    results[numResults++] = shell.exec('sfdx force:doc:commands:display > ' + helpFile)
+    results[numResults++] = shell.exec('sfdx update')
+
+    if (!argv.nolocal) {
+      const helpFile = joinPath(config.get('projectPath'), 'docs/sfdx-help.txt')
+      const refFile = joinPath(config.get('projectPath'), 'docs/sfdx-ref.txt')
+
+      if (!argv.quiet) console.log('Updating SFDX CLI reference file...')
+      shell.exec('sfdx force:doc:commands:list > ' + refFile)
+
+      results[numResults++] = outputFile()
+
+      if (!argv.quiet) console.log('Updating SFDX CLI help file...')
+      results[numResults++] = shell.exec('sfdx force:doc:commands:display > ' + helpFile)
+    }
 
     return getResults(results)
   }
