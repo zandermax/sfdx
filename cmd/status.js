@@ -31,16 +31,16 @@ module.exports = {
       })
   },
 
-  handler: args => {
+  handler: argv => {
     if (!argv) argv = {}
-    const alias = args.alias
+    const alias = argv.alias
     let output = 'Checking '
     let statusCommand = 'sfdx force:source:status'
 
-    if (args.remote) {
+    if (argv.remote) {
       output += 'remote '
       statusCommand += ' --remote'
-    } else if (args.local) {
+    } else if (argv.local) {
       output += 'local '
       statusCommand += ' --local'
     } else {
@@ -49,7 +49,7 @@ module.exports = {
     if (alias) statusCommand += ' --targetusername ' + alias
 
     output += 'status of ' + (alias ? "'" + alias + "'" : 'default org') + '...'
-    if (!args.quiet) shell.echo(output)
+    if (!argv.quiet) shell.echo(output)
 
     const result = shell.exec(statusCommand)
 
