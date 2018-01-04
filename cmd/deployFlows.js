@@ -181,11 +181,8 @@ const getfilesToDelete = async argv => {
               'WARNING: Active flow version is less than latest flow file version.' +
               config.get('stars')
           )
-          console.warn(
-            config.get('stars') +
-              "Please update the active flow version, run the 'deployflows' command without the '--forcedelete' option, or delete the file(s)." +
-              config.get('stars')
-          )
+          console.warn(config.get('stars') + 'Please update the active flow version' + config.get('stars'))
+          console.warn("Run the 'deployflows' command without the '--forcedelete ' option, or delete the file(s)")
           process.exit(flowVersion)
         }
         if (flowsToKeep > 0) {
@@ -226,8 +223,15 @@ const pushCode = argv => {
 
   const result = shell.exec(pushCommand)
   if (result.stderr || result.stdout.indexOf('ERROR') != -1) {
-    if (!argv.quiet) console.log()
-    console.error(err('Could not deploy code. Check that the active flow versions have not been modified or deleted.'))
+    // Check if the error is due to flows
+    if (result.stdout.indexOf('flow') != -1) {
+      if (!argv.quiet) console.log()
+      console.error(
+        err('Could not deploy code. Check that the active flow versions have not been modified or deleted.')
+      )
+    } else {
+      console.error(err('Could not deploy code.'))
+    }
     process.exit(1)
   }
 
