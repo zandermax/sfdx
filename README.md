@@ -13,34 +13,34 @@ npm i sfdx-ez --save
 
 Here is a function that one might use to spin up an org and push code into it:
 ````javascript
-const dxez = require('sfdx-ez')
+const sfdx = require('sfdx-ez')
 
 // options - all options to use for the relevant commands
 //   (see sfdx-ez config documentation)
 function spinup(options) {
   // Create a new scratch org
-  dxez.create(options)
+  sfdx.create(options)
   // Push local code into the newly-created scratch org
-  dxez.push(options)
+  sfdx.push(options)
   // Open the newly-created scratch org in a browser window
-  dxez.open(options)
+  sfdx.open(options)
 }
 ````
 
 As another example, here is a function that pulls code from a scratch org, converts the local Salesforce DX code into Metadata API format, and deploys the converted code into a production (i.e. non-scratch) org.
 ````javascript
-const dxez = require('sfdx-ez')
+const sfdx = require('sfdx-ez')
 
 // options - all options to use for the relevant commands
 //   (see sfdx-ez config documentation)
 function toproduction(options) {
   // Pull code from the scratch org
-  dxez.pull(options)
+  sfdx.pull(options)
   // Convert local Salesforce DX code into Metadata API format
-  dxez.convert(options)
+  sfdx.convert(options)
   // Deploy the formatted code into a non-scratch org
   //   'deployto' specifies to deploy to the org named 'MySandbox'
-  dxez.deploy({
+  sfdx.deploy({
     deployto: 'MySandbox'
   })
 }
@@ -55,12 +55,12 @@ For example, to import all of the commands, do the following (ensure you have [y
 ````javascript
 #!/usr/bin/env node
 
-const dxez = require('sfdx-ez')
+const sfdx = require('sfdx-ez')
 const yargs = require('yargs')
 
 // Import all commands
-for (command of Object.keys(dxez)) {
-  yargs.command(dxez[command].yargs)
+for (command of Object.keys(sfdx)) {
+  yargs.command(sfdx[command].yargs)
 }
 
 // Add help option
