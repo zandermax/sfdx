@@ -11,12 +11,14 @@ Also see configuration values [here](https://github.com/axlemax/sfdx/blob/master
   }
 ````
 ## Global Options
-
+***
   These options can be applied to any command:
 
   `options.quiet` *[ boolean ]* - Supress output
+***
+### clearOrgs( _options_ )
+>Deletes all non-default scratch orgs without given aliases.
 
-### **clearOrgs( _options_ ): Deletes all non-default scratch orgs without given aliases.**
   `options.force` *[ boolean ]* - Do not confirm deletion of orgs
 
 ### convert( _options_ )
