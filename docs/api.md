@@ -5,9 +5,9 @@ Also see configuration values [here](https://github.com/axlemax/sfdx/blob/master
 
   ````javascript
   result: {
-    code: [ string ] : - exit code of shell commands that were executed
-    stdout: [ string ] : - stdout result of shell commands that were executed
-    stderr: [ string ] : - stderr result of shell commands that were executed
+    code: [ string ] - exit code of shell commands that were executed
+    stdout: [ string ] - stdout result of shell commands that were executed
+    stderr: [ string ] - stderr result of shell commands that were executed
   }
 ````
 ## Global Options
