@@ -84,7 +84,13 @@ function createOrg (orgname, argv) {
     process.exit(1)
   } else {
     if (!argv.quiet) console.log('Generating user password' + (alias ? " for org '" + alias + "'" : '') + '...')
-    results[numResults++] = shell.exec('sfdx force:user:password:generate > /dev/null')
+
+    // Supress output of user password, since it displays redundant information
+    const silentState = shell.config.silent
+    shell.config.silent = true
+    results[numResults++] = shell.exec('sfdx force:user:password:generate')
+    shell.config.silent = silentState // restore old silent state
+
     if (!argv.quiet) console.log()
   }
 
