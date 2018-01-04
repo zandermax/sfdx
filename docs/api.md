@@ -19,7 +19,7 @@ Also see configuration values [here](https://github.com/axlemax/sfdx/blob/master
 
   `options.quiet` *[ boolean ]* - Supress output
 
-### clearOrgs( _options_ ): Deletes all non-default scratch orgs without given aliases.
+### **clearOrgs( _options_ ): Deletes all non-default scratch orgs without given aliases.**
   `options.force` *[ boolean ]* - Do not confirm deletion of orgs
 
 ### convert( _options_ ): Convert local DX code into metadata format.
@@ -32,8 +32,8 @@ Also see configuration values [here](https://github.com/axlemax/sfdx/blob/master
 
   `options.definitionfile` *[ string ]* - Definition file to use when creating the org ( _*DEFAULT*_: [_config.scratchDefFile_](https://github.com/axlemax/sfdx/blob/master/docs/config.md) )
 
-### delete( _orgList_, _options_ ): Deletes scratch org(s).
-  **[REQUIRED]** `orgList | orgList[]` *[ string | string[ ] ]*- Alias(es) (or username(s)) of the org(s) to delete
+### delete( _org_, _options_ ): Deletes scratch org(s).
+  **[REQUIRED]** `org | org[]` *[ string | string[ ] ]*- Alias(es) (or username(s)) of the org(s) to delete
 
   `options.force` *[ boolean ]* - Delete the org(s) without prompt ( _*DEFAULT*_: false)
 
