@@ -37,10 +37,10 @@ Also see configuration values [here](https://github.com/axlemax/sfdx/blob/master
 
   `options.definitionfile` *[ string ]* - Definition file to use when creating the org ( _*DEFAULT*_: [_config.scratchDefFile_](https://github.com/axlemax/sfdx/blob/master/docs/config.md) )
 
-### delete( _org_ | _org[ ]_, _options_ )
+### delete( _options_ )
 >Deletes scratch org(s).
 
-  **[REQUIRED]** `org | org[]` *[ string | string[ ] ]*- Alias(es) (or username(s)) of the org(s) to delete
+  **[REQUIRED]** `options.org | org[]` *[ string | string[ ] ]*- Alias(es) (or username(s)) of the org(s) to delete
 
   `options.force` *[ boolean ]* - Delete the org(s) without prompt ( _*DEFAULT*_: false)
 
