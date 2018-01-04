@@ -157,10 +157,10 @@ const getfilesToDelete = async argv => {
   const regexFlowFilename = /.+?(?=-[0-9]+\.)/
 
   let flowFile = ''
-  let flowsToKeep = config.get('oldFlowsToKeep')
+  let flowsToKeep = config.get('inactiveFlowsToKeep')
 
   if (isNaN(flowsToKeep)) {
-    console.error(err('Invalid number of flow specified in configuration.'))
+    console.error(err('Invalid number of flows specified in configuration.'))
     process.exit(1)
   }
 

@@ -10,7 +10,7 @@ This uses the [config](https://github.com/lorenwest/node-config) package, so fol
 ## mdApiDir *[ string ]*: Directory to use for Metadata API converted source
   _*DEFAULT*_: config.projectPath + '/mdapioutput'
 
-## oldFlowsToKeep *[ integer ]*: Number of previous flow versions to keep
+## inactiveFlowsToKeep *[ integer ]*: Number of incative flow versions to keep
   _*DEFAULT*_: 1
 
 ## projectDir *[ string ]*: Directory of SFDX project

@@ -15,8 +15,8 @@ module.exports = {
   // DEFAULT: config.projectPath + '/mdapioutput'
   mdApiDir: joinPath(projectPath, 'mdapioutput'),
 
-  // Number of previous flow versions to keep
-  oldFlowsToKeep: 1,
+  // Number of inactive flow versions to keep
+  inactiveFlowsToKeep: 1,
 
   // Directory of SFDX project
   // DEFAULT: Current working directory
