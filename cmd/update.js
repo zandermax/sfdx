@@ -27,6 +27,7 @@ module.exports = {
   },
 
   handler: argv => {
+    if (!argv) argv = {}
     let numResults = 0
     const results = []
 

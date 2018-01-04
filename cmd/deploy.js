@@ -33,6 +33,7 @@ module.exports = {
   },
 
   handler: argv => {
+    if (!argv) argv = {}
     const alias = argv.deploytoalias || argv.deployto
     const outputdir = argv.outputdirectory || config.get('mdApiDir')
 

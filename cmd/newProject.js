@@ -30,6 +30,7 @@ module.exports = {
   },
 
   handler: argv => {
+    if (!argv) argv = {}
     const dir = argv.outputdirectory || config.get('projectPath')
     const projectName = argv.projectname || argv.newprojectname || config.get('projectDir')
 

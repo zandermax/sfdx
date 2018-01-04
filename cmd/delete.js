@@ -1,4 +1,5 @@
 const err = require('../helpers/errorOutput')
+const getResults = require('../helpers/compileResults')
 
 const inquirer = require('inquirer')
 const isArray = require('util').isArray
@@ -33,27 +34,34 @@ module.exports = {
   },
 
   handler: async argv => {
+    if (!argv) argv = {}
     const orgList = argv.alias || argv.orgname
     if (!orgList) {
       console.error(err('No org name specified for deletion.'))
       process.exit(1)
     }
 
+    let numResults = 0
+    const results = []
     if (isArray(orgList)) {
       for (org of orgList) {
-        const result = await deleteOrg(org, argv)
-        if (result.stderr) return problemsHappened(argv, result.stderr)
+        results[numResults++] = await deleteOrg(org, argv)
+        let lastResult = results[numResults - 1]
+        if (lastResult.stderr) return problemsHappened(lastResult)
       }
     } else {
-      const result = await deleteOrg(orgList, argv)
-      if (result.stderr) return problemsHappened(argv, result.stderr)
+      results[numResults++] = await deleteOrg(orgList, argv)
+      let lastResult = results[numResults - 1]
+      if (lastResult.stderr) return problemsHappened(lastResult)
     }
+
+    return await getResults(results)
   }
 }
 
-function problemsHappened (argv, error) {
+function problemsHappened (result) {
   console.error(err('Deletion failed.'))
-  return error
+  return result
 }
 
 async function deleteOrg (orgName, argv) {
@@ -68,6 +76,8 @@ async function deleteOrg (orgName, argv) {
 
     if (answers[deleteConfirmed]) {
       return await performDeletion(orgName, argv)
+    } else {
+      return {}
     }
   } else {
     return await performDeletion(orgName, argv)

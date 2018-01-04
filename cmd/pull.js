@@ -27,6 +27,7 @@ module.exports = {
   },
 
   handler: argv => {
+    if (!argv) argv = {}
     const alias = argv.alias || argv.pullfrom
     const force = argv.force
 

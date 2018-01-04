@@ -14,6 +14,7 @@ module.exports = {
   },
 
   handler: argv => {
+    if (!argv) argv = {}
     if (!argv.quiet) console.log('Getting list of connected orgs...')
     const result = shell.exec('sfdx force:org:list')
     return result

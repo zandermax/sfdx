@@ -22,6 +22,7 @@ module.exports = {
   },
 
   handler: argv => {
+    if (!argv) argv = {}
     let alias = argv.alias || argv.orgname
     let userInfoCommand = 'sfdx force:user:display'
 

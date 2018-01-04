@@ -27,6 +27,7 @@ module.exports = {
   },
 
   handler: async argv => {
+    if (!argv) argv = {}
     const outputdir = argv.outputdir || argv.outputdirectory || config.mdApiDir
 
     if (!outputdir) {

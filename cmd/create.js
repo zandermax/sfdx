@@ -39,6 +39,7 @@ module.exports = {
   },
 
   handler: argv => {
+    if (!argv) argv = {}
     const orgList = argv.alias || argv.orgname
 
     if (isArray(argv.alias)) {

@@ -32,6 +32,7 @@ module.exports = {
   },
 
   handler: argv => {
+    if (!argv) argv = {}
     const alias = argv.alias || argv.orgname
     const devhub = argv.devhub
     const sandbox = argv.sandbox

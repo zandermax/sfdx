@@ -32,6 +32,7 @@ module.exports = {
   },
 
   handler: args => {
+    if (!argv) argv = {}
     const alias = args.alias
     let output = 'Checking '
     let statusCommand = 'sfdx force:source:status'

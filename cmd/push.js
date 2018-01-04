@@ -37,6 +37,7 @@ module.exports = {
   },
 
   handler: async argv => {
+    if (!argv) argv = {}
     argv.pushto = argv.alias || argv.orgname
 
     let numResults = 0

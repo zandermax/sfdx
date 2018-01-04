@@ -45,6 +45,7 @@ module.exports = {
   },
 
   handler: argv => {
+    if (!argv) argv = {}
     argv.alias = argv.alias || argv.orgname
 
     let numResults = 0

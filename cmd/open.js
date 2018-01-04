@@ -22,6 +22,7 @@ module.exports = {
   },
 
   handler: argv => {
+    if (!argv) argv = {}
     const alias = argv.alias || argv.orgname
 
     if (!argv.quiet) console.log('Opening ' + (alias ? "'" + alias + "'" : 'default org') + '...')

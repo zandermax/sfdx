@@ -27,6 +27,7 @@ module.exports = {
   },
 
   handler: argv => {
+    if (!argv) argv = {}
     if (!argv.quiet) console.log('Checking the list of scratch orgs...')
 
     const today = new Date()
