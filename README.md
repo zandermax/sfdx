@@ -1,22 +1,22 @@
-# sfdx-ez
+# sfdx
 
-sfdx-ez is a node module used to interact with Salesforce DX commands, hopefully in a more intuitive way than with the DX CLI itself. sfdx-ez is meant to take some of the nuances of using Salesforce DX and make common operations easier.
+sfdx is a node module used to interact with Salesforce DX commands, hopefully in a more intuitive way than with the DX CLI itself. sfdx is meant to take some of the nuances of using Salesforce DX and make common operations easier.
 
 ## Installation
 
 ```bash
-npm i sfdx-ez --save
+npm i sfdx --save
 ```
 
 ## Examples
-(Sample project [here](https://github.com/axlemax/sfdx-ez-example).)
+(Sample project [here](https://github.com/axlemax/sfdx-example).)
 
 Here is a function that one might use to spin up an org and push code into it:
 ````javascript
-const sfdx = require('sfdx-ez')
+const sfdx = require('sfdx')
 
 // options - all options to use for the relevant commands
-//   (see sfdx-ez config documentation)
+//   (see sfdx config documentation)
 function spinup(options) {
   // Create a new scratch org
   sfdx.create(options)
@@ -29,10 +29,10 @@ function spinup(options) {
 
 As another example, here is a function that pulls code from a scratch org, converts the local Salesforce DX code into Metadata API format, and deploys the converted code into a production (i.e. non-scratch) org.
 ````javascript
-const sfdx = require('sfdx-ez')
+const sfdx = require('sfdx')
 
 // options - all options to use for the relevant commands
-//   (see sfdx-ez config documentation)
+//   (see sfdx config documentation)
 function toproduction(options) {
   // Pull code from the scratch org
   sfdx.pull(options)
@@ -55,7 +55,7 @@ For example, to import all of the commands, do the following (ensure you have [y
 ````javascript
 #!/usr/bin/env node
 
-const sfdx = require('sfdx-ez')
+const sfdx = require('sfdx')
 const yargs = require('yargs')
 
 // Import all commands
@@ -78,7 +78,7 @@ Then, if you save that file as `"cli.js"` and you add something like the followi
 ...
 ````
 ## Help / Documentation
-* [Node command API reference here](https://github.com/axlemax/sfdx-ez/blob/master/docs/api.md).
-* [Configuration values reference here](https://github.com/axlemax/sfdx-ez/blob/master/docs/config.md).
+* [Node command API reference here](https://github.com/axlemax/sfdx/blob/master/docs/api.md).
+* [Configuration values reference here](https://github.com/axlemax/sfdx/blob/master/docs/config.md).
 
 ** For help with the terminal commands, which includes seeing a command's shortcuts, use `--help` (or `-h`) on any command. To see help for ALL commands, use `--help` (or `-h`) on the root command (for example `dx -h`)!

@@ -11,7 +11,7 @@ const CONFIG_DIR = 'config'
 const configPath = __dirname
 let configFileList = fs.readdirSync(configPath)
 
-// sfdx-ez default settings
+// sfdx default settings
 for (file of configFileList) {
   const configFile = require(joinPath(configPath, file))
   for (prop in configFile) {
@@ -24,7 +24,7 @@ const externalConfigPath = joinPath(shell.pwd().stdout, 'config')
 let externalConfigFileList = fs.readdirSync(externalConfigPath)
 
 externalConfigFileList = externalConfigFileList.filter(fileName => {
-  return fileName.includes('sfdx-ez')
+  return fileName.includes('sfdx')
 })
 
 for (file of externalConfigFileList) {

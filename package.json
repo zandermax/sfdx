@@ -14,11 +14,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axlemax/sfdx-ez.git"
+    "url": "git+https://github.com/axlemax/sfdx.git"
   },
   "author": "Zander Maxwell",
   "license": "MIT",
-  "homepage": "https://github.com/axlemax/sfdx-ez/blob/master/README.md",
+  "homepage": "https://github.com/axlemax/sfdx/blob/master/README.md",
   "engines": {
     "node": ">=8.0.0"
   },
