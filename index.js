@@ -1,6 +1,8 @@
 const COMMAND_DIR = 'cmd'
 
 const config = require('./config/config')
+const init = require('./lib/init')
+
 const fs = require('fs')
 const joinPath = require('path').join
 const modulePath = joinPath(__dirname, COMMAND_DIR)
@@ -8,6 +10,9 @@ const modulePath = joinPath(__dirname, COMMAND_DIR)
 const fileList = fs.readdirSync(modulePath)
 
 const fileName = /.*(?=\.)/
+
+// Initialize module
+init()
 
 // Export all commands
 for (file of fileList) {

@@ -3,6 +3,7 @@
 sfdx is a node module used to interact with Salesforce DX commands, hopefully in a more intuitive way than with the DX CLI itself. sfdx is meant to take some of the nuances of using Salesforce DX and make common operations easier.
 
 ## Installation
+Make sure you have the [Salesforce DX CLI](https://developer.salesforce.com/tools/sfdxcli) installed first! This module will let you know if you don't, but it will leave it up to you to actually install it.
 
 ```bash
 npm i sfdx --save
