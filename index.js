@@ -30,7 +30,5 @@ for (file of fileList) {
     })
   }
 
-  module.exports[exportFunction]
-
   module.exports[exportFunction].yargs = exportFile
 }
