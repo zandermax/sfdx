@@ -19,7 +19,8 @@ module.exports = {
       })
       .option('quiet', {
         alias: ['q'],
-        describe: 'Quiet mode'
+        describe: 'Quiet mode',
+        type: 'boolean'
       })
   },
 

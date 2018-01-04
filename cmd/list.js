@@ -8,7 +8,8 @@ module.exports = {
   builder: yargs => {
     yargs.option('quiet', {
       alias: ['q'],
-      describe: 'Quiet mode'
+      describe: 'Quiet mode',
+      type: 'boolean'
     })
   },
 

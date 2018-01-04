@@ -21,7 +21,8 @@ module.exports = {
       })
       .option('quiet', {
         alias: ['q'],
-        describe: 'Quiet mode'
+        describe: 'Quiet mode',
+        type: 'boolean'
       })
       .option('sandbox', {
         alias: ['sb', 's'],
