@@ -3,6 +3,7 @@
 sfdx is a node module used to interact with Salesforce DX commands, hopefully in a more intuitive way than with the DX CLI itself. sfdx is meant to take some of the nuances of using Salesforce DX and make common operations easier.
 
 ## Installation
+
 Make sure you have the [Salesforce DX CLI](https://developer.salesforce.com/tools/sfdxcli) installed first! This module will let you know if you don't, but it will leave it up to you to actually install it.
 
 ```bash
@@ -10,9 +11,11 @@ npm i sfdx --save
 ```
 
 ## Examples
+
 (Sample project [here](https://github.com/axlemax/sfdx-example).)
 
 Here is a function that one might use to spin up an org and push code into it:
+
 ````javascript
 const sfdx = require('sfdx')
 
@@ -29,6 +32,7 @@ function spinup(options) {
 ````
 
 As another example, here is a function that pulls code from a scratch org, converts the local Salesforce DX code into Metadata API format, and deploys the converted code into a production (i.e. non-scratch) org.
+
 ````javascript
 const sfdx = require('sfdx')
 
@@ -71,6 +75,7 @@ yargs
 ````
 
 Then, if you save that file as `"cli.js"` and you add something like the following to your `package.json` and then run `"npm link"`, the command `"dx l"` will list all connected orgs (for example)!
+
 ````json
 ...
 "bin": {
@@ -78,7 +83,9 @@ Then, if you save that file as `"cli.js"` and you add something like the followi
   },
 ...
 ````
+
 ## Help / Documentation
+
 * [Node command API reference here](https://github.com/axlemax/sfdx/blob/master/docs/api.md).
 * [Configuration values reference here](https://github.com/axlemax/sfdx/blob/master/docs/config.md).
 
