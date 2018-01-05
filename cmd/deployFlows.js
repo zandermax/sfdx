@@ -216,11 +216,10 @@ const getfilesToDelete = async argv => {
   }
 
   if (!argv.forcedelete) {
-    const promptResult = await inquirer.prompt(questions).then(answers => {
-      for (toDelete in answers) {
-        if (answers[toDelete]) filesToDelete.push(toDelete + '.flow-meta.xml')
-      }
-    })
+    const answers = await inquirer.prompt(questions)
+    for (let toDelete in answers) {
+      if (answers[toDelete]) filesToDelete.push(toDelete + '.flow-meta.xml')
+    }
   }
   return filesToDelete
 }
@@ -232,7 +231,6 @@ const pushCode = argv => {
 
   const result = shell.exec(pushCommand)
   if (result.stderr || result.stdout.indexOf('ERROR') != -1) {
-
     if (!argv.quiet) console.log()
     // Check if the error is due to flows
     if (result.stdout.indexOf('flow') != -1) {

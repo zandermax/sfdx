@@ -1,6 +1,5 @@
 const COMMAND_DIR = 'cmd'
 
-const config = require('./config/config')
 const init = require('./lib/init')
 
 const fs = require('fs')
@@ -15,7 +14,7 @@ const fileName = /.*(?=\.)/
 init()
 
 // Export all commands
-for (file of fileList) {
+for (let file of fileList) {
   // Skip hidden files
   if (file.startsWith('.')) continue
 

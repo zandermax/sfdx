@@ -1,6 +1,5 @@
 const config = require('../config/config')
 
-const joinPath = require('path').join
 const shell = require('shelljs')
 
 module.exports = {
@@ -39,7 +38,7 @@ module.exports = {
     const dir = argv.outputdirectory || config.get('projectPath')
     const projectName = argv.projectname || argv.newprojectname || config.get('projectDir')
 
-    if (!argv.quiet) console.log('Creating new Salesforce DX project named' + projectname + ' in ' + dir + '...')
+    if (!argv.quiet) console.log('Creating new Salesforce DX project named' + projectName + ' in ' + dir + '...')
 
     const result = shell.exec('sfdx force:project:create --projectname ' + projectName + ' --outputdir ' + dir)
 

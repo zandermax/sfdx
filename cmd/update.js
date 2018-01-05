@@ -1,8 +1,8 @@
 const config = require('../config/config')
 
 const getResults = require('../helpers/compileResults')
+const err = require('../helpers/errorOutput')
 
-const fs = require('fs')
 const joinPath = require('path').join
 const jsonfile = require('jsonfile')
 const shell = require('shelljs')
@@ -42,7 +42,7 @@ module.exports = {
       if (!argv.quiet) console.log('Updating SFDX CLI reference file...')
       shell.exec('sfdx force:doc:commands:list > ' + refFile)
 
-      results[numResults++] = outputFile()
+      results[numResults++] = outputFile(argv)
 
       if (!argv.quiet) console.log('Updating SFDX CLI help file...')
       results[numResults++] = shell.exec('sfdx force:doc:commands:display > ' + helpFile)
@@ -52,7 +52,7 @@ module.exports = {
   }
 }
 
-async function outputFile () {
+async function outputFile (argv) {
   let numResults = 0
   const results = []
   const today = new Date()

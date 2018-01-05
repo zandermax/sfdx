@@ -2,8 +2,6 @@ const config = require('../config/config')
 
 const getResults = require('../helpers/compileResults')
 
-const convert = require('./convert').handler
-
 const shell = require('shelljs')
 
 module.exports = {
@@ -31,7 +29,10 @@ module.exports = {
         type: 'boolean'
       })
       .example('$0 deploy --deployto DeployTest', "- Deploys Metadata API code into org with the alias 'DeployTest'")
-      .example("$0 deploy -a DeployTest -d myOutputDir", "- Deploys Metadata API code from the directory 'myOutputDir' into 'DeployTest'")
+      .example(
+        '$0 deploy -a DeployTest -d myOutputDir',
+        "- Deploys Metadata API code from the directory 'myOutputDir' into 'DeployTest'"
+      )
   },
 
   handler: argv => {

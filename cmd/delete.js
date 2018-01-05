@@ -47,7 +47,7 @@ module.exports = {
     let numResults = 0
     const results = []
     if (isArray(orgList)) {
-      for (org of orgList) {
+      for (let org of orgList) {
         results[numResults++] = await deleteOrg(org, argv)
         let lastResult = results[numResults - 1]
         if (lastResult.stderr) return problemsHappened(lastResult)

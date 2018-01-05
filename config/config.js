@@ -6,15 +6,13 @@ const joinPath = require('path').join
 const fs = require('fs')
 const shell = require('shelljs')
 
-const CONFIG_DIR = 'config'
-
 const configPath = __dirname
 let configFileList = fs.readdirSync(configPath)
 
 // sfdx default settings
-for (file of configFileList) {
+for (let file of configFileList) {
   const configFile = require(joinPath(configPath, file))
-  for (prop in configFile) {
+  for (let prop in configFile) {
     config[prop] = configFile[prop]
   }
 }
@@ -27,9 +25,9 @@ externalConfigFileList = externalConfigFileList.filter(fileName => {
   return fileName.includes('sfdx')
 })
 
-for (file of externalConfigFileList) {
+for (let file of externalConfigFileList) {
   const extConfigFile = require(joinPath(externalConfigPath, file))
-  for (prop in extConfigFile) {
+  for (let prop in extConfigFile) {
     config[prop] = extConfigFile[prop]
   }
 }

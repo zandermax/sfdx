@@ -53,7 +53,7 @@ module.exports = {
 
     if (isArray(argv.alias)) {
       let results = []
-      for (org of orgList) {
+      for (let org of orgList) {
         results.push(createOrg(org, argv))
       }
       return getResults(results)
