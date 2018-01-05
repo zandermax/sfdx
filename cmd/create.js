@@ -68,27 +68,26 @@ module.exports = {
   }
 }
 
-function createOrg (orgname, argv) {
+function createOrg(orgname, argv) {
   const alias = orgname || argv.alias
   const days = argv.days
   const defFile = argv.definitionfile || config.get('scratchDefFile')
 
   if (!argv.quiet) {
-    console.log(
-      'Creating new scratch org' +
-        (alias ? " named '" + alias + "'" : ' and setting it as the default scratch org') +
-        (days ? ' that will expire after ' + days + (days > 1 ? ' days' : ' day') : '') +
-        '...'
-    )
+    let output = 'Creating new scratch org'
+    output += (alias ? " named '" + alias + "'" : ' and setting it as the default scratch org')
+    output += (argv.defaultorg && alias ? ' and setting it as the default scratch org' : '')
+    output += (days ? ' that will expire after ' + days + (days > 1 ? ' days' : ' day') : '')
+    output += '...'
+    console.log(output)
   }
 
   let numResults = 0
   const results = []
   let createCommand = 'sfdx force:org:create' +
-  (days ? ' --durationdays ' + days : '') +
-  ' --definitionfile ' +
-  defFile
-  createCommand += (alias ? ' --setalias ' + alias '')
+    (days ? ' --durationdays ' + days : '') +
+    ' --definitionfile ' + defFile
+  createCommand += (alias ? ' --setalias ' + alias : '')
   if (!alias || argv.defaultorg) createCommand += ' --setdefaultusername'
 
   results[numResults++] = shell.exec(createCommand)
