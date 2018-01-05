@@ -31,6 +31,11 @@ module.exports = {
         default: config.get('scratchDefFile'),
         describe: 'Definition file to use when creating the org'
       })
+      .option('defaultorg', {
+        alias: ['f'],
+        describe: 'Sets the newly-created scratch org as the default',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -79,13 +84,14 @@ function createOrg (orgname, argv) {
 
   let numResults = 0
   const results = []
-  results[numResults++] = shell.exec(
-    'sfdx force:org:create' +
-      (days ? ' --durationdays ' + days : '') +
-      ' --definitionfile ' +
-      defFile +
-      (alias ? ' --setalias ' + alias : ' --setdefaultusername')
-  )
+  let createCommand = 'sfdx force:org:create' +
+  (days ? ' --durationdays ' + days : '') +
+  ' --definitionfile ' +
+  defFile
+  createCommand += (alias ? ' --setalias ' + alias '')
+  if (!alias || argv.defaultorg) createCommand += ' --setdefaultusername'
+
+  results[numResults++] = shell.exec(createCommand)
 
   if (results[numResults - 1].stderr || results[numResults - 1].stdout.indexOf('ERROR') != -1) {
     console.error(
