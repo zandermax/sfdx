@@ -24,6 +24,8 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example('$0 update', '- Updates the Salesforce DX CLI, and writes local help files')
+      .example('$0 u --nolocal', '- Updates the Salesforce DX CLI, without local help files')
   },
 
   handler: argv => {

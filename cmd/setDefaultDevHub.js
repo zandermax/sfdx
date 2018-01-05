@@ -22,6 +22,7 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example('$0 setdevhub NewDevHub', "- Sets default developer hub org to 'NewDevHub'")
   },
 
   handler: argv => {

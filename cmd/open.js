@@ -19,6 +19,8 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example('$0 o MyOrg', "- Opens the org with alias 'MyOrg'")
+      .example('$0 open --alias MyOtherOrg', "- Opens the org with alias 'MyOtherOrg'")
   },
 
   handler: argv => {

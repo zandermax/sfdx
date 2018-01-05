@@ -19,6 +19,8 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example('$0 userinfo --alias MyOrg', "- Gets user info for the org 'MyOrg'")
+      .example('$0 ui MyOrg', "- Gets user info for the org 'MyOrg'")
   },
 
   handler: argv => {

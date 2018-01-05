@@ -29,6 +29,8 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example('$0 status MyOrg', "- Gets the local and remote code status of 'MyOrg'")
+      .example('$0 status --remote -a MyOrg', "- Gets the remote code status of 'MyOrg'")
   },
 
   handler: argv => {

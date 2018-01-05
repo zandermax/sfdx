@@ -22,6 +22,7 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example('$0 sdo NewOrg', "- Sets default scratch org to 'NewOrg'")
   },
 
   handler: argv => {

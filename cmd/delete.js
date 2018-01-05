@@ -18,7 +18,7 @@ module.exports = {
       })
       .option('alias', {
         alias: ['a'],
-        describe: '[Additional] Alias(es) (or username) of the org(s) to delete',
+        describe: '[Additional] Alias(es) (or username(s)) of the org(s) to delete',
         type: 'array'
       })
       .option('force', {
@@ -31,6 +31,9 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example('$0 delete --alias DeleteMe -f', "- Forcibly deletes the org with the alias 'DeleteMe'")
+      .example('$0 del -a DeleteMe AndMe', "- Deletes the orgs with the aliases 'DeleteMe' and 'AndMe'")
+      .example('$0 d DeleteMe', "- Deletes the org with the alias 'DeleteMe'")
   },
 
   handler: async argv => {

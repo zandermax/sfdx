@@ -36,6 +36,15 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example(
+        '$0 create --alias NewOrg --days 8',
+        "- Creates a new scratch org with the alias 'NewOrg' that will expire in 8 days"
+      )
+      .example(
+        "$0 n --def 'config/mydeffile.json'",
+        "- Creates a new defalt scratch org using definition file 'config/mydeffile.json'"
+      )
+      .example('$0 n', '- Creates a new default scratch org with no alias')
   },
 
   handler: argv => {

@@ -24,6 +24,7 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example("$0 convert 'outputdir'", "- Converts local Salesforce DX code into the directory named 'outputdir/'")
   },
 
   handler: async argv => {

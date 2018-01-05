@@ -42,6 +42,12 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example('$0 deployflows', '- Deploys updated flow versions to default scratch org')
+      .example(
+        '$0 flows -a FlowTest --fd',
+        "- Deploys updated flow versions to org named 'FlowTest', forcibly deleting out-of-date flows"
+      )
+      .example('$0 flows -a FlowTest --fp', "- Forcibly deploys updated flow versions to org named 'FlowTest'")
   },
 
   handler: argv => {
@@ -182,7 +188,10 @@ const getfilesToDelete = async argv => {
               'WARNING: Active flow version is less than latest flow file version.' +
               config.get('stars')
           )
-          console.warn(config.get('stars') + "Please either update the active flow version, run the 'deployflows' command without the '--forcedelete' option, or delete the file(s)")
+          console.warn(
+            config.get('stars') +
+              "Please either update the active flow version, run the 'deployflows' command without the '--forcedelete' option, or delete the file(s)"
+          )
           process.exit(flowVersion)
         }
         if (flowsToKeep > 0) {

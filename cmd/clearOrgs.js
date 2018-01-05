@@ -24,6 +24,8 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example('$0 clearorgs', '- Delete all non-default scratch orgs without aliases')
+      .example('$0 cl -f', '- Forcibly deletes all non-default scratch orgs without aliases')
   },
 
   handler: argv => {

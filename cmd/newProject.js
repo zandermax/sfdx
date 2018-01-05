@@ -27,6 +27,11 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example('$0 newproject --name MyProject', "- Creates a new Salesforce DX project named 'MyProject'")
+      .example(
+        '$0 newproject NewProject --dir myDirectory',
+        "- Creates a new Salesforce DX project named 'NewProject' in 'myDirectory/'"
+      )
   },
 
   handler: argv => {

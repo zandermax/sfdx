@@ -30,6 +30,8 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example('$0 deploy --deployto DeployTest', "- Deploys Metadata API code into org with the alias 'DeployTest'")
+      .example("$0 deploy -a DeployTest -d myOutputDir", "- Deploys Metadata API code from the directory 'myOutputDir' into 'DeployTest'")
   },
 
   handler: argv => {

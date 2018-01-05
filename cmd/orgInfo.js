@@ -28,6 +28,8 @@ module.exports = {
         describe: 'Also retrieve info on the default user',
         type: 'boolean'
       })
+      .example('$0 orginfo --alias MyOrg', "- Gets info on the org with alias 'MyOrg'")
+      .example('$0 i MyOrg -u', "- Gets org and user info on the org with alias 'MyOrg'")
   },
 
   handler: argv => {

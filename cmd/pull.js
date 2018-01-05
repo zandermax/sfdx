@@ -24,6 +24,8 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example('$0 pull --pullfrom MyOrg', "- Pulls source from 'MyOrg'")
+      .example('$0 pull MyOrg -f', "- Forcibly pulls source from 'MyOrg'")
   },
 
   handler: argv => {

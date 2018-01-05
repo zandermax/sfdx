@@ -34,6 +34,9 @@ module.exports = {
         describe: 'Quiet mode',
         type: 'boolean'
       })
+      .example('$0 push --pushto MyOrg', "- Pulls source into 'MyOrg'")
+      .example('$0 push MyOrg -f', "- Forcibly pushes source into 'MyOrg'")
+      .example('$0 push MyOrg --noflows', "- Pushes source into 'MyOrg', without checking flow versions")
   },
 
   handler: async argv => {

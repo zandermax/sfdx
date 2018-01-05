@@ -6,11 +6,13 @@ module.exports = {
   aliases: ['ls', 'l'],
 
   builder: yargs => {
-    yargs.option('quiet', {
-      alias: ['q'],
-      describe: 'Quiet mode',
-      type: 'boolean'
-    })
+    yargs
+      .option('quiet', {
+        alias: ['q'],
+        describe: 'Quiet mode',
+        type: 'boolean'
+      })
+      .example('$0 list', '- Lists all connected orgs')
   },
 
   handler: argv => {

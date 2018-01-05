@@ -29,6 +29,10 @@ module.exports = {
         describe: 'Specifies if the org being logged into is a sandbox',
         type: 'boolean'
       })
+      .example('$0 login', "- Logs in to a new org, setting it as the default scratch org")
+      .example('$0 login MyOrg', "- Logs in to an org and names it 'MyOrg'")
+      .example('$0 login --alias SandboxOrg --sandbox', "- Logs in to sandbox org named 'SandboxOrg'")
+      .example('$0 login DevHub --devhub', "- Logs in to an org and sets it as the default developer hub")
   },
 
   handler: argv => {
