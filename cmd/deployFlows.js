@@ -52,6 +52,7 @@ module.exports = {
 
   handler: argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     argv.alias = argv.alias || argv.orgname
 
     let numResults = 0
@@ -228,6 +229,7 @@ const pushCode = argv => {
   let pushCommand = 'sfdx force:source:push'
   if (argv.forcepush) pushCommand += ' --forceoverwrite'
   if (argv.alias) pushCommand += ' --targetusername ' + argv.alias
+  if (argv.json) pushCommand += ' --json'
 
   const result = shell.exec(pushCommand)
   if (result.stderr || result.stdout.indexOf('ERROR') != -1) {

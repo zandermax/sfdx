@@ -19,6 +19,7 @@ Also see configuration values [here](https://github.com/axlemax/sfdx/blob/master
 
   These options can be applied to any command:
 
+  `options.json` *[ boolean ]* - Output only the results of the Salesforce DX CLI commands, and in JSON format
   `options.quiet` *[ boolean ]* - Supress output
 
 ### clearOrgs( _options_ )

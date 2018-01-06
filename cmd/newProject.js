@@ -21,6 +21,11 @@ module.exports = {
         describe: 'Directory in which to create the new Salesforce DX project',
         default: config.get('projectPath')
       })
+      .option('json', {
+        alias: ['j'],
+        describe: 'Output in JSON format',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -35,12 +40,15 @@ module.exports = {
 
   handler: argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     const dir = argv.outputdirectory || config.get('projectPath')
     const projectName = argv.projectname || argv.newprojectname || config.get('projectDir')
 
     if (!argv.quiet) console.log('Creating new Salesforce DX project named' + projectName + ' in ' + dir + '...')
 
-    const result = shell.exec('sfdx force:project:create --projectname ' + projectName + ' --outputdir ' + dir)
+    let newProjectCommand = 'sfdx force:project:create --projectname ' + projectName + ' --outputdir ' + dir
+    if (argv.json) newProjectCommand += ' --json'
+    const result = shell.exec(newProjectCommand)
 
     return result
   }

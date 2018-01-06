@@ -14,6 +14,11 @@ module.exports = {
         alias: ['org', 'a'],
         describe: 'Alias of the org to retrieve info on'
       })
+      .option('json', {
+        alias: ['j'],
+        describe: 'Output in JSON format',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -25,12 +30,12 @@ module.exports = {
 
   handler: argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     let alias = argv.alias || argv.orgname
     let userInfoCommand = 'sfdx force:user:display'
+    if (argv.json) userInfoCommand += ' --json'
 
-    if (alias) {
-      userInfoCommand += ' --targetusername ' + alias
-    }
+    if (alias) userInfoCommand += ' --targetusername' + alias
 
     if (!argv.quiet) {
       console.log('Getting user info for ' + (alias ? "'" + alias + "'" : 'default org') + '...')

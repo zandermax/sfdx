@@ -23,6 +23,11 @@ module.exports = {
         describe: 'Directory containing the Metadata API source code to deploy',
         default: config.get('mdApiDir')
       })
+      .option('json', {
+        alias: ['j'],
+        describe: 'Output in JSON format',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -37,6 +42,7 @@ module.exports = {
 
   handler: argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     const alias = argv.deploytoalias || argv.deployto
     const outputdir = argv.outputdirectory || config.get('mdApiDir')
 
@@ -48,9 +54,10 @@ module.exports = {
 
     let numResults = 0
     const results = []
-    results[numResults++] = shell.exec(
+    let deployCommand =
       'sfdx force:mdapi:deploy --deploydir ' + outputdir + (alias ? ' --targetusername ' + alias : '') + ' --wait 100'
-    )
+    if (argv.json) deployCommand += ' --json'
+    results[numResults++] = shell.exec(deployCommand)
 
     // Do not delete converted code if there is an error
     if (!results[numResults - 1].stderr) results[numResults++] = shell.exec('rm -r -f ' + outputdir)

@@ -19,6 +19,11 @@ module.exports = {
         describe: 'Force the remote code to overwrite local changes',
         type: 'boolean'
       })
+      .option('json', {
+        alias: ['j'],
+        describe: 'Output in JSON format',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -30,6 +35,7 @@ module.exports = {
 
   handler: argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     const alias = argv.alias || argv.pullfrom
     const force = argv.force
 
@@ -42,6 +48,7 @@ module.exports = {
     let pullCommand = 'sfdx force:source:pull'
     if (force) pullCommand += ' --forceoverwrite'
     if (alias) pullCommand += ' --targetusername ' + alias
+    if (argv.json) pullCommand += ' --json'
 
     if (!argv.quiet) console.log()
     const result = shell.exec(pullCommand)

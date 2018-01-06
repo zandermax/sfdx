@@ -24,6 +24,11 @@ module.exports = {
         describe: 'Fetch only changes in code locally',
         conflicts: 'remote'
       })
+      .option('json', {
+        alias: ['j'],
+        describe: 'Output in JSON format',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -35,6 +40,7 @@ module.exports = {
 
   handler: argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     const alias = argv.alias
     let output = 'Checking '
     let statusCommand = 'sfdx force:source:status'
@@ -49,6 +55,7 @@ module.exports = {
       statusCommand += ' --all'
     }
     if (alias) statusCommand += ' --targetusername ' + alias
+    if (argv.json) statusCommand += ' --json'
 
     output += 'status of ' + (alias ? "'" + alias + "'" : 'default org') + '...'
     if (!argv.quiet) shell.echo(output)

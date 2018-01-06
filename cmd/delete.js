@@ -26,6 +26,11 @@ module.exports = {
         describe: 'Delete the org(s) without prompt',
         type: 'boolean'
       })
+      .option('json', {
+        alias: ['j'],
+        describe: 'Output in JSON format',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -94,7 +99,9 @@ async function performDeletion (alias, argv) {
   }
 
   if (!argv.quiet) console.log("Deleting org '" + alias + "'...")
-  const result = await shell.exec('sfdx force:org:delete' + ' --targetusername ' + alias + ' --noprompt')
+  let deleteCommand = 'sfdx force:org:delete' + ' --targetusername ' + alias + ' --noprompt'
+  if (argv.json) deleteCommand += ' --json'
+  const result = await shell.exec(deleteCommand)
 
   return result
 }

@@ -7,6 +7,11 @@ module.exports = {
 
   builder: yargs => {
     yargs
+      .option('json', {
+        alias: ['j'],
+        describe: 'Output in JSON format',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -17,8 +22,13 @@ module.exports = {
 
   handler: argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     if (!argv.quiet) console.log('Getting list of connected orgs...')
-    const result = shell.exec('sfdx force:org:list')
+
+    let listCommand = 'sfdx force:org:list'
+    if (argv.json) listCommand += ' --json'
+    const result = shell.exec(listCommand)
+
     return result
   }
 }

@@ -29,6 +29,11 @@ module.exports = {
         describe: 'Do not check for updated flow versions',
         type: 'boolean'
       })
+      .option('json', {
+        alias: ['j'],
+        describe: 'Output in JSON format',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -41,6 +46,7 @@ module.exports = {
 
   handler: async argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     argv.pushto = argv.alias || argv.orgname
 
     let numResults = 0
@@ -55,6 +61,7 @@ module.exports = {
       let pushCommand = 'sfdx force:source:push'
       if (argv.forceCode) pushCommand += ' --forceoverwrite'
       if (argv.alias) pushCommand += ' --targetusername ' + argv.alias
+      if (argv.json) pushCommand += ' --json'
 
       results[numResults++] = await shell.exec(pushCommand)
       if (results[numResults - 1].stderr || results[numResults - 1].stdout.indexOf('ERROR') != -1) {

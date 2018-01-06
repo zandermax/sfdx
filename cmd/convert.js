@@ -19,6 +19,11 @@ module.exports = {
         alias: ['dir', 'd'],
         describe: 'Directory in which to place converted code into'
       })
+      .option('json', {
+        alias: ['j'],
+        describe: 'Output in JSON format',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -29,6 +34,7 @@ module.exports = {
 
   handler: async argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     const outputdir = argv.outputdir || argv.outputdirectory || config.mdApiDir
 
     if (!outputdir) {
@@ -42,7 +48,9 @@ module.exports = {
     const results = []
     results[numResults++] = await shell.exec('rm -r -f "' + outputdir + '"')
     results[numResults++] = await shell.exec('mkdir "' + outputdir + '"')
-    results[numResults++] = await shell.exec('sfdx force:source:convert --outputdir "' + outputdir + '"')
+    let convertCommand = 'sfdx force:source:convert --outputdir "' + outputdir + '"'
+    if (argv.json) convertCommand += ' --json'
+    results[numResults++] = await shell.exec(convertCommand)
 
     return getResults(results)
   }

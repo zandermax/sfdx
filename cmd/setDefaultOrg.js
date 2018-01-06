@@ -17,6 +17,11 @@ module.exports = {
         alias: ['org', 'a'],
         describe: 'Alias of the org to set as the default'
       })
+      .option('json', {
+        alias: ['j'],
+        describe: 'Output in JSON format',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -27,6 +32,7 @@ module.exports = {
 
   handler: argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     const alias = argv.alias || argv.orgname
 
     let numResults = 0
@@ -38,7 +44,10 @@ module.exports = {
       console.error(errorMessage)
     } else {
       if (!argv.quiet) console.log("Setting default scratch org to '" + alias + "'...")
-      results[numResults++] = shell.exec('sfdx force:config:set defaultusername=' + alias)
+
+      let setUserCommand = 'sfdx force:config:set defaultusername=' + alias
+      if (argv.json) setUserCommand += ' --json'
+      results[numResults++] = shell.exec(setUserCommand)
     }
 
     return getResults(results)

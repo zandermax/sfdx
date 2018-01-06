@@ -14,6 +14,11 @@ module.exports = {
         alias: ['org', 'a'],
         describe: 'Alias of the org to open in the browser'
       })
+      .option('json', {
+        alias: ['j'],
+        describe: 'Output in JSON format',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -25,13 +30,15 @@ module.exports = {
 
   handler: argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     const alias = argv.alias || argv.orgname
 
     if (!argv.quiet) console.log('Opening ' + (alias ? "'" + alias + "'" : 'default org') + '...')
 
-    const result = shell.exec(
+    let openCommand =
       'sfdx force:org:open ' + (alias ? '--targetusername ' + alias : '') + ' --path one/one.app#/setup/home'
-    )
+    if (argv.json) openCommand += ' --json'
+    const result = shell.exec(openCommand)
 
     return result
   }

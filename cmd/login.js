@@ -19,6 +19,11 @@ module.exports = {
         describe: 'Specifies if the org being logged into is the new default DevHub',
         type: 'boolean'
       })
+      .option('json', {
+        alias: ['j'],
+        describe: 'Output in JSON format',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -29,14 +34,15 @@ module.exports = {
         describe: 'Specifies if the org being logged into is a sandbox',
         type: 'boolean'
       })
-      .example('$0 login', "- Logs in to a new org, setting it as the default scratch org")
+      .example('$0 login', '- Logs in to a new org, setting it as the default scratch org')
       .example('$0 login MyOrg', "- Logs in to an org and names it 'MyOrg'")
       .example('$0 login --alias SandboxOrg --sandbox', "- Logs in to sandbox org named 'SandboxOrg'")
-      .example('$0 login DevHub --devhub', "- Logs in to an org and sets it as the default developer hub")
+      .example('$0 login DevHub --devhub', '- Logs in to an org and sets it as the default developer hub')
   },
 
   handler: argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     const alias = argv.alias || argv.orgname
     const devhub = argv.devhub
     const sandbox = argv.sandbox
@@ -47,12 +53,13 @@ module.exports = {
       )
     }
 
-    const result = shell.exec(
+    let loginCommand =
       'sfdx force:auth:web:login ' +
-        (alias ? '--setalias ' + alias : '--setdefaultusername') +
-        (sandbox ? ' --instanceurl https://test.salesforce.com' : '') +
-        (devhub ? ' --setdefaultdevhubusername' : '')
-    )
+      (alias ? '--setalias ' + alias : '--setdefaultusername') +
+      (sandbox ? ' --instanceurl https://test.salesforce.com' : '') +
+      (devhub ? ' --setdefaultdevhubusername' : '')
+    if (argv.json) loginCommand += ' --json'
+    const result = shell.exec(loginCommand)
 
     return result
   }

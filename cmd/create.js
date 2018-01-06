@@ -36,6 +36,11 @@ module.exports = {
         describe: 'Sets the newly-created scratch org as the default',
         type: 'boolean'
       })
+      .option('json', {
+        alias: ['j'],
+        describe: 'Output in JSON format',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -54,6 +59,7 @@ module.exports = {
 
   handler: argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     const orgList = argv.alias || argv.orgname
 
     if (isArray(argv.alias)) {
@@ -68,27 +74,26 @@ module.exports = {
   }
 }
 
-function createOrg(orgname, argv) {
+function createOrg (orgname, argv) {
   const alias = orgname || argv.alias
   const days = argv.days
   const defFile = argv.definitionfile || config.get('scratchDefFile')
 
   if (!argv.quiet) {
     let output = 'Creating new scratch org'
-    output += (alias ? " named '" + alias + "'" : ' and setting it as the default scratch org')
-    output += (argv.defaultorg && alias ? ' and setting it as the default scratch org' : '')
-    output += (days ? ' that will expire after ' + days + (days > 1 ? ' days' : ' day') : '')
+    output += alias ? " named '" + alias + "'" : ' and setting it as the default scratch org'
+    output += argv.defaultorg && alias ? ' and setting it as the default scratch org' : ''
+    output += days ? ' that will expire after ' + days + (days > 1 ? ' days' : ' day') : ''
     output += '...'
     console.log(output)
   }
 
   let numResults = 0
   const results = []
-  let createCommand = 'sfdx force:org:create' +
-    (days ? ' --durationdays ' + days : '') +
-    ' --definitionfile ' + defFile
-  createCommand += (alias ? ' --setalias ' + alias : '')
+  let createCommand = 'sfdx force:org:create' + (days ? ' --durationdays ' + days : '') + ' --definitionfile ' + defFile
+  createCommand += alias ? ' --setalias ' + alias : ''
   if (!alias || argv.defaultorg) createCommand += ' --setdefaultusername'
+  if (argv.json) createCommand += ' --json'
 
   results[numResults++] = shell.exec(createCommand)
 
