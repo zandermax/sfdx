@@ -41,7 +41,7 @@ module.exports = {
       const errorMessage = err('No default org specified.')
       results[numResults++] = {}
       results[numResults - 1].stderr = errorMessage
-      console.error(errorMessage)
+      if (!argv.quiet) console.error(errorMessage)
     } else {
       if (!argv.quiet) console.log("Setting default scratch org to '" + alias + "'...")
 

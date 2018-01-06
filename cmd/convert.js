@@ -38,8 +38,9 @@ module.exports = {
     const outputdir = argv.outputdir || argv.outputdirectory || config.mdApiDir
 
     if (!outputdir) {
-      console.error(err('No output directory specified.'))
-      process.exit(1)
+      let errorMsg = err('No output directory specified.')
+      if (!argv.quiet) console.error(errorMsg)
+      return { stderr: errorMsg }
     }
 
     if (!argv.quiet) console.log('Converting local DX code into Metatdata API format...')

@@ -19,6 +19,11 @@ module.exports = {
         describe: 'Do not confirm deletion of orgs',
         type: 'boolean'
       })
+      .option('json', {
+        alias: ['j'],
+        describe: 'Output in JSON format',
+        type: 'boolean'
+      })
       .option('quiet', {
         alias: ['q'],
         describe: 'Quiet mode',
@@ -30,6 +35,7 @@ module.exports = {
 
   handler: argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     if (!argv.quiet) console.log('Checking the list of scratch orgs...')
 
     const today = new Date()

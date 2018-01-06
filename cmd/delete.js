@@ -43,10 +43,12 @@ module.exports = {
 
   handler: async argv => {
     if (!argv) argv = {}
+    if (argv.json) argv.quiet = true
     const orgList = argv.alias || argv.orgname
     if (!orgList) {
-      console.error(err('No org name specified for deletion.'))
-      process.exit(1)
+      const errorMsg = err('No org name specified for deletion.')
+      if (!argv.quiet) console.error(errorMsg)
+      return { stderr: errorMsg }
     }
 
     let numResults = 0
@@ -68,7 +70,8 @@ module.exports = {
 }
 
 function problemsHappened (result) {
-  console.error(err('Deletion failed.'))
+  const errorMsg = err('Deletion failed.')
+  console.error(errorMsg)
   return result
 }
 
@@ -94,8 +97,9 @@ async function deleteOrg (orgName, argv) {
 
 async function performDeletion (alias, argv) {
   if (!alias) {
-    console.error(err('No org name specified to delete.'))
-    process.exit(1)
+    let errorMsg = err('No org name specified to delete.')
+    if (!argv.quiet) console.error(errorMsg)
+    return { stderr: errorMsg }
   }
 
   if (!argv.quiet) console.log("Deleting org '" + alias + "'...")

@@ -64,16 +64,23 @@ async function outputFile (argv) {
   const newfile = joinPath(config.get('projectPath'), 'docs', 'sfdx-help-extended.json')
   results[numResults++] = await shell.exec('sfdx force:doc:commands:display --json > ' + outputfile)
 
-  await jsonfile.writeFileSync(newfile, jsonfile.readFileSync(outputfile), { spaces: 2 }, err => {
-    console.error(err)
-    process.exit(1)
-  })
+  try {
+    await jsonfile.writeFileSync(newfile, jsonfile.readFileSync(outputfile), { spaces: 2 }, err => {
+      if (!argv.quiet) console.error(err)
+      throw new Error(err)
+    })
+  } catch (fileError) {
+    results[numResults++] = { stderr: fileError }
+  }
 
   results[numResults++] = shell.exec('rm -rf ' + outputfile)
 
   const result = getResults(results)
   if (result.stderr) {
-    console.error(err('Unable to complete update.'))
+    if (!argv.quiet) {
+      console.error(err('Unable to complete update.'))
+      console.error(result.stderr)
+    }
   } else {
     if (!argv.quiet) console.log('Update completed.')
   }

@@ -64,11 +64,13 @@ module.exports = {
       if (argv.json) pushCommand += ' --json'
 
       results[numResults++] = await shell.exec(pushCommand)
-      if (results[numResults - 1].stderr || results[numResults - 1].stdout.indexOf('ERROR') != -1) {
-        console.error(
-          err('Could not deploy code. Check that the active flow versions have not been modified or deleted.')
+      const lastResult = results[numResults - 1]
+      if (lastResult.stderr || lastResult.stdout.indexOf('ERROR') != -1) {
+        const errorMsg = err(
+          'Could not deploy code. Check that the active flow versions have not been modified or deleted.'
         )
-        process.exit(1)
+        if (!argv.quiet) console.error(errorMsg)
+        return { stderr: errorMsg }
       }
     } else {
       argv.fromPush = true

@@ -138,13 +138,14 @@ const getfilesToDelete = async argv => {
           return file.name
         })
     } catch (fileError) {
-      console.error(config.get('stars') + 'ERROR:' + config.get('stars'))
-      console.error(fileError)
-      process.exit(1)
+      let errorMsg = config.get('stars') + 'ERROR:' + config.get('stars')
+      errorMsg += '\n' + fileError
+      if (!argv.quiet) console.error(fileError)
+      return { stderr: errorMsg }
     }
   } else {
     // No flow directory
-    return ''
+    return {}
   }
 
   const flowDefs = []
