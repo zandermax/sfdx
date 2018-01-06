@@ -19,7 +19,12 @@ for (let file of configFileList) {
 
 // Local, project-specific settings
 const externalConfigPath = joinPath(shell.pwd().stdout, 'config')
-let externalConfigFileList = fs.readdirSync(externalConfigPath)
+let externalConfigFileList = []
+try {
+  externalConfigFileList = fs.readdirSync(externalConfigPath)
+} catch (fileError) {
+  // No config directory
+}
 
 externalConfigFileList = externalConfigFileList.filter(fileName => {
   return fileName.includes('sfdx')
