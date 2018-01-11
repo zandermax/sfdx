@@ -1,4 +1,5 @@
 const config = require('../config/config')
+const joinPath = require('path').join
 
 const shell = require('shelljs')
 
@@ -19,7 +20,7 @@ module.exports = {
       .option('outputdirectory', {
         alias: ['dir', 'd'],
         describe: 'Directory in which to create the new Salesforce DX project',
-        default: config.get('projectPath')
+        default: joinPath(config.get('projectPath'), '../')
       })
       .option('json', {
         alias: ['j'],
@@ -41,10 +42,11 @@ module.exports = {
   handler: argv => {
     if (!argv) argv = {}
     if (argv.json) argv.quiet = true
+
     const dir = argv.outputdirectory || config.get('projectPath')
     const projectName = argv.projectname || argv.newprojectname || config.get('projectDir')
 
-    if (!argv.quiet) console.log('Creating new Salesforce DX project named' + projectName + ' in ' + dir + '...')
+    if (!argv.quiet) console.log('Creating new Salesforce DX project named ' + projectName + ' in ' + dir + '...')
 
     let newProjectCommand = 'sfdx force:project:create --projectname ' + projectName + ' --outputdir ' + dir
     if (argv.json) newProjectCommand += ' --json'
