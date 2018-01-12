@@ -28,7 +28,7 @@ module.exports = {
       })
       .option('definitionfile', {
         alias: ['def', 'e'],
-        default: config.get('scratchDefFile'),
+        default: config.scratchDefFile,
         describe: 'Definition file to use when creating the org'
       })
       .option('defaultorg', {
@@ -77,7 +77,7 @@ module.exports = {
 function createOrg (orgname, argv) {
   const alias = orgname || argv.alias
   const days = argv.days
-  const defFile = argv.definitionfile || config.get('scratchDefFile')
+  const defFile = argv.definitionfile || config.scratchDefFile
 
   if (!argv.quiet) {
     let output = 'Creating new scratch org'

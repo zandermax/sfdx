@@ -21,7 +21,7 @@ module.exports = {
       .option('outputdirectory', {
         alias: ['outputdir', 'dir', 'd'],
         describe: 'Directory containing the Metadata API source code to deploy',
-        default: config.get('mdApiDir')
+        default: config.mdApiDir
       })
       .option('json', {
         alias: ['j'],
@@ -44,7 +44,7 @@ module.exports = {
     if (!argv) argv = {}
     if (argv.json) argv.quiet = true
     const alias = argv.deploytoalias || argv.deployto
-    const outputdir = argv.outputdirectory || config.get('mdApiDir')
+    const outputdir = argv.outputdirectory || config.mdApiDir
 
     if (!argv.quiet) {
       console.log('Deploying metadata into' + (alias ? " '" + alias + "'" : ' default org') + '...')

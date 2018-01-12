@@ -10,8 +10,9 @@ const shell = require('shelljs')
 const xml2js = require('xml2js')
 
 // Set global variables
-const defPath = joinPath(config.get('dxSourceDir'), 'flowDefinitions')
-const flowPath = joinPath(config.get('dxSourceDir'), 'flows')
+const dxSourceDir = config.dxSourceDir
+const defPath = joinPath(dxSourceDir, 'flowDefinitions')
+const flowPath = joinPath(dxSourceDir, 'flows')
 
 module.exports = {
   desc: 'Deploys the flows to an org, ensuring that only one version is deployed and active.',
@@ -138,7 +139,7 @@ const getfilesToDelete = async argv => {
           return file.name
         })
     } catch (fileError) {
-      let errorMsg = config.get('stars') + 'ERROR:' + config.get('stars')
+      let errorMsg = config.stars + 'ERROR:' + config.stars
       errorMsg += '\n' + fileError
       if (!argv.quiet) console.error(fileError)
       return { stderr: errorMsg }
@@ -166,7 +167,7 @@ const getfilesToDelete = async argv => {
   const regexFlowFilename = /.+?(?=-[0-9]+\.)/
 
   let flowFile = ''
-  let flowsToKeep = config.get('inactiveFlowsToKeep')
+  let flowsToKeep = config.inactiveFlowsToKeep
 
   if (isNaN(flowsToKeep)) {
     console.error(err('Invalid number of flows specified in configuration.'))
@@ -186,12 +187,10 @@ const getfilesToDelete = async argv => {
       if (argv.forcedelete) {
         if (flowDefs[flowFilename].activeVersion < flowVersion) {
           console.warn(
-            config.get('stars') +
-              'WARNING: Active flow version is less than latest flow file version.' +
-              config.get('stars')
+            config.stars+ 'WARNING: Active flow version is less than latest flow file version.' + config.stars
           )
           console.warn(
-            config.get('stars') +
+            config.stars +
               "Please either update the active flow version, run the 'deployflows' command without the '--forcedelete' option, or delete the file(s)"
           )
           process.exit(flowVersion)

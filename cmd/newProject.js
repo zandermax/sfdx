@@ -3,6 +3,8 @@ const joinPath = require('path').join
 
 const shell = require('shelljs')
 
+const defaultPath = joinPath(config.projectPath, '..')
+
 module.exports = {
   desc: 'Creates a new Salesforce DX project.',
   command: ['newproject [newprojectname] [projectname|name|n] [outputdirectory|dir|d]'],
@@ -20,7 +22,7 @@ module.exports = {
       .option('outputdirectory', {
         alias: ['dir', 'd'],
         describe: 'Directory in which to create the new Salesforce DX project',
-        default: joinPath(config.get('projectPath'), '../')
+        default: defaultPath
       })
       .option('json', {
         alias: ['j'],
@@ -43,10 +45,16 @@ module.exports = {
     if (!argv) argv = {}
     if (argv.json) argv.quiet = true
 
-    const dir = argv.outputdirectory || config.get('projectPath')
-    const projectName = argv.projectname || argv.newprojectname || config.get('projectDir')
+    let dir = argv.outputdirectory || config.projectPath
+    let projectName = argv.projectname || argv.newprojectname
+    // If a name is given, but not a directory, make sure to create a directory in the current one
+    if (projectName && dir === defaultPath) {
+      dir = shell.pwd().stdout
+    } else {
+      projectName = config.projectDir
+    }
 
-    if (!argv.quiet) console.log('Creating new Salesforce DX project named ' + projectName + ' in ' + dir + '...')
+    if (!argv.quiet) console.log("reating new Salesforce DX project named '" + projectName + "' in " + dir + '...')
 
     let newProjectCommand = 'sfdx force:project:create --projectname ' + projectName + ' --outputdir ' + dir
     if (argv.json) newProjectCommand += ' --json'

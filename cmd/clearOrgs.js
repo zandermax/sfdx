@@ -40,7 +40,7 @@ module.exports = {
 
     const today = new Date()
     const outputfile = joinPath(
-      config.get('projectPath'),
+      config.projectPath,
       'orglist-' + today.getHours() + today.getMinutes() + today.getSeconds() + '.json'
     )
 

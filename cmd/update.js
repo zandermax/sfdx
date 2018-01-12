@@ -36,8 +36,8 @@ module.exports = {
     results[numResults++] = shell.exec('sfdx update')
 
     if (!argv.nolocal) {
-      const helpFile = joinPath(config.get('projectPath'), 'docs', 'sfdx-help.txt')
-      const refFile = joinPath(config.get('projectPath'), 'docs', 'sfdx-ref.txt')
+      const helpFile = joinPath(config.projectPath, 'docs', 'sfdx-help.txt')
+      const refFile = joinPath(config.projectPath, 'docs', 'sfdx-ref.txt')
 
       if (!argv.quiet) console.log('Updating SFDX CLI reference file...')
       shell.exec('sfdx force:doc:commands:list > ' + refFile)
@@ -57,11 +57,11 @@ async function outputFile (argv) {
   const results = []
   const today = new Date()
   const outputfile = joinPath(
-    config.get('projectPath'),
+    config.projectPath,
     'docs',
     'sfdx-help-unformatted' + '-' + today.getHours() + today.getMinutes() + today.getSeconds() + '.json'
   )
-  const newfile = joinPath(config.get('projectPath'), 'docs', 'sfdx-help-extended.json')
+  const newfile = joinPath(config.projectPath, 'docs', 'sfdx-help-extended.json')
   results[numResults++] = await shell.exec('sfdx force:doc:commands:display --json > ' + outputfile)
 
   try {
