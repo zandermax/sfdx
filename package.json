@@ -23,7 +23,6 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
-    "config": "^1.29.0",
     "fs": "0.0.1-security",
     "inquirer": "^4.0.2",
     "jsonfile": "^4.0.0",
