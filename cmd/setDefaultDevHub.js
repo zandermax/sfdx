@@ -1,3 +1,5 @@
+const yargsBuilder = require('../lib/yargsBuilder')
+
 const err = require('../helpers/errorOutput')
 const getResults = require('../helpers/compileResults')
 
@@ -9,6 +11,7 @@ module.exports = {
   aliases: ['setdevhub', 'sdh'],
 
   builder: yargs => {
+    yargs = yargsBuilder.builder(yargs)
     yargs
       .positional('orgname', {
         describe: 'Alias of the org to set as the default'
@@ -17,22 +20,11 @@ module.exports = {
         alias: ['org', 'a'],
         describe: 'Alias of the org to set as the default'
       })
-      .option('json', {
-        alias: ['j'],
-        describe: 'Output in JSON format',
-        type: 'boolean'
-      })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
-        type: 'boolean'
-      })
       .example('$0 setdevhub NewDevHub', "- Sets default developer hub org to 'NewDevHub'")
   },
 
   handler: argv => {
-    if (!argv) argv = {}
-    if (argv.json) argv.quiet = true
+    argv = yargsBuilder.handler(argv)
     const alias = argv.alias || argv.orgname
 
     let numResults = 0

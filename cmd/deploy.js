@@ -1,4 +1,5 @@
 const config = require('../config/config')
+const yargsBuilder = require('../lib/yargsBuilder')
 
 const getResults = require('../helpers/compileResults')
 
@@ -10,6 +11,7 @@ module.exports = {
   aliases: [],
 
   builder: yargs => {
+    yargs = yargsBuilder.builder(yargs)
     yargs
       .positional('deploytoalias', {
         describe: 'Alias of the org to deploy code into'
@@ -23,16 +25,6 @@ module.exports = {
         describe: 'Directory containing the Metadata API source code to deploy',
         default: config.mdApiDir
       })
-      .option('json', {
-        alias: ['j'],
-        describe: 'Output in JSON format',
-        type: 'boolean'
-      })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
-        type: 'boolean'
-      })
       .example('$0 deploy --deployto DeployTest', "- Deploys Metadata API code into org with the alias 'DeployTest'")
       .example(
         '$0 deploy -a DeployTest -d myOutputDir',
@@ -41,8 +33,7 @@ module.exports = {
   },
 
   handler: argv => {
-    if (!argv) argv = {}
-    if (argv.json) argv.quiet = true
+    argv = yargsBuilder.handler(argv)
     const alias = argv.deploytoalias || argv.deployto
     const outputdir = argv.outputdirectory || config.mdApiDir
 

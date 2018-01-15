@@ -1,4 +1,5 @@
 const config = require('../config/config')
+const yargsBuilder = require('../lib/yargsBuilder')
 
 const deleteOrgs = require('./delete').handler
 
@@ -13,20 +14,11 @@ module.exports = {
   aliases: ['cl'],
 
   builder: yargs => {
+    yargs = yargsBuilder.builder(yargs)
     yargs
       .option('force', {
         alias: ['f'],
         describe: 'Do not confirm deletion of orgs',
-        type: 'boolean'
-      })
-      .option('json', {
-        alias: ['j'],
-        describe: 'Output in JSON format',
-        type: 'boolean'
-      })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
         type: 'boolean'
       })
       .example('$0 clearorgs', '- Delete all non-default scratch orgs without aliases')
@@ -34,8 +26,7 @@ module.exports = {
   },
 
   handler: argv => {
-    if (!argv) argv = {}
-    if (argv.json) argv.quiet = true
+    argv = yargsBuilder.handler(argv)
     if (!argv.quiet) console.log('Checking the list of scratch orgs...')
 
     const today = new Date()

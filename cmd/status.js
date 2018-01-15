@@ -1,3 +1,5 @@
+const yargsBuilder = require('../lib/yargsBuilder')
+
 const shell = require('shelljs')
 
 module.exports = {
@@ -6,6 +8,7 @@ module.exports = {
   aliases: ['check'],
 
   builder: yargs => {
+    yargs = yargsBuilder.builder(yargs)
     yargs
       .positional('orgname', {
         describe: 'Alias of the org of which to check status'
@@ -24,23 +27,12 @@ module.exports = {
         describe: 'Fetch only changes in code locally',
         conflicts: 'remote'
       })
-      .option('json', {
-        alias: ['j'],
-        describe: 'Output in JSON format',
-        type: 'boolean'
-      })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
-        type: 'boolean'
-      })
       .example('$0 status MyOrg', "- Gets the local and remote code status of 'MyOrg'")
       .example('$0 status --remote -a MyOrg', "- Gets the remote code status of 'MyOrg'")
   },
 
   handler: argv => {
-    if (!argv) argv = {}
-    if (argv.json) argv.quiet = true
+    argv = yargsBuilder.handler(argv)
     const alias = argv.alias
     let output = 'Checking '
     let statusCommand = 'sfdx force:source:status'

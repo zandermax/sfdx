@@ -1,3 +1,5 @@
+const yargsBuilder = require('../lib/yargsBuilder')
+
 const err = require('../helpers/errorOutput')
 const getResults = require('../helpers/compileResults')
 
@@ -11,6 +13,7 @@ module.exports = {
   aliases: [],
 
   builder: yargs => {
+    yargs = yargsBuilder.builder(yargs)
     yargs
       .positional('orgname', {
         describe: 'Alias of the scratch org to push code into'
@@ -29,24 +32,13 @@ module.exports = {
         describe: 'Do not check for updated flow versions',
         type: 'boolean'
       })
-      .option('json', {
-        alias: ['j'],
-        describe: 'Output in JSON format',
-        type: 'boolean'
-      })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
-        type: 'boolean'
-      })
       .example('$0 push --pushto MyOrg', "- Pulls source into 'MyOrg'")
       .example('$0 push MyOrg -f', "- Forcibly pushes source into 'MyOrg'")
       .example('$0 push MyOrg --noflows', "- Pushes source into 'MyOrg', without checking flow versions")
   },
 
   handler: async argv => {
-    if (!argv) argv = {}
-    if (argv.json) argv.quiet = true
+    argv = yargsBuilder.handler(argv)
     argv.pushto = argv.alias || argv.orgname
 
     let numResults = 0

@@ -1,3 +1,5 @@
+const yargsBuilder = require('../lib/yargsBuilder')
+
 const getResults = require('../helpers/compileResults')
 
 const userInfo = require('./userInfo').handler
@@ -10,6 +12,7 @@ module.exports = {
   aliases: ['i'],
 
   builder: yargs => {
+    yargs = yargsBuilder.builder(yargs)
     yargs
       .positional('orgname', {
         describe: 'Alias of the org to retrieve info on'
@@ -17,16 +20,6 @@ module.exports = {
       .option('alias', {
         alias: ['org', 'a'],
         describe: 'Alias of the org to retrieve info on'
-      })
-      .option('json', {
-        alias: ['j'],
-        describe: 'Output in JSON format',
-        type: 'boolean'
-      })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
-        type: 'boolean'
       })
       .option('user', {
         alias: ['u'],
@@ -38,8 +31,7 @@ module.exports = {
   },
 
   handler: argv => {
-    if (!argv) argv = {}
-    if (argv.json) argv.quiet = true
+    argv = yargsBuilder.handler(argv)
     const alias = argv.alias || argv.orgname
     let orgInfoCommand = 'sfdx force:org:display'
 
