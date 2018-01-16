@@ -46,7 +46,7 @@ module.exports = {
       projectName = config.projectDir
     }
 
-    if (!argv.quiet) console.log("reating new Salesforce DX project named '" + projectName + "' in " + dir + '...')
+    if (!argv.quiet) console.log("Creating new Salesforce DX project named '" + projectName + "' in " + dir + '...')
 
     let newProjectCommand = 'sfdx force:project:create --projectname ' + projectName + ' --outputdir ' + dir
     if (argv.json) newProjectCommand += ' --json'
