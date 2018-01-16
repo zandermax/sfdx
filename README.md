@@ -68,10 +68,8 @@ for (let command of Object.keys(sfdx)) {
   yargs.command(sfdx[command].yargs)
 }
 
-// Add help option
-yargs
-  .help()
-  .alias('h', 'help').argv
+// Initialize yargs commands
+yargs.argv
 ````
 
 Then, if you save that file as `"cli.js"` and you add something like the following to your `package.json` and then run `"npm link"`, the command `"dx l"` will list all connected orgs (for example)!

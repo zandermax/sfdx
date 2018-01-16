@@ -1,3 +1,5 @@
+const yargsBuilder = require('../lib/yargsBuilder')
+
 const err = require('../helpers/errorOutput')
 const getResults = require('../helpers/compileResults')
 
@@ -11,6 +13,7 @@ module.exports = {
   aliases: ['del', 'd'],
 
   builder: yargs => {
+    yargs = yargsBuilder.builder(yargs)
     yargs
       .positional('orgname', {
         describe: 'Alias (or username) of the org to delete',
@@ -26,24 +29,13 @@ module.exports = {
         describe: 'Delete the org(s) without prompt',
         type: 'boolean'
       })
-      .option('json', {
-        alias: ['j'],
-        describe: 'Output in JSON format',
-        type: 'boolean'
-      })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
-        type: 'boolean'
-      })
       .example('$0 delete --alias DeleteMe -f', "- Forcibly deletes the org with the alias 'DeleteMe'")
       .example('$0 del -a DeleteMe AndMe', "- Deletes the orgs with the aliases 'DeleteMe' and 'AndMe'")
       .example('$0 d DeleteMe', "- Deletes the org with the alias 'DeleteMe'")
   },
 
   handler: async argv => {
-    if (!argv) argv = {}
-    if (argv.json) argv.quiet = true
+    argv = yargsBuilder.handler(argv)
     const orgList = argv.alias || argv.orgname
     if (!orgList) {
       const errorMsg = err('No org name specified for deletion.')

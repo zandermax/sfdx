@@ -1,4 +1,5 @@
 const config = require('../config/config')
+const yargsBuilder = require('../lib/yargsBuilder')
 
 const getResults = require('../helpers/compileResults')
 const err = require('../helpers/errorOutput')
@@ -12,6 +13,7 @@ module.exports = {
   aliases: ['n'],
 
   builder: yargs => {
+    yargs = yargsBuilder.builder(yargs)
     yargs
       .positional('orgname', {
         describe: 'Alias of the org to create'
@@ -36,16 +38,6 @@ module.exports = {
         describe: 'Sets the newly-created scratch org as the default',
         type: 'boolean'
       })
-      .option('json', {
-        alias: ['j'],
-        describe: 'Output in JSON format',
-        type: 'boolean'
-      })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
-        type: 'boolean'
-      })
       .example(
         '$0 create --alias NewOrg --days 8',
         "- Creates a new scratch org with the alias 'NewOrg' that will expire in 8 days"
@@ -58,8 +50,7 @@ module.exports = {
   },
 
   handler: argv => {
-    if (!argv) argv = {}
-    if (argv.json) argv.quiet = true
+    argv = yargsBuilder.handler(argv)
     const orgList = argv.alias || argv.orgname
 
     if (isArray(argv.alias)) {

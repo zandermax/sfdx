@@ -1,3 +1,5 @@
+const yargsBuilder = require('../lib/yargsBuilder')
+
 const shell = require('shelljs')
 
 module.exports = {
@@ -6,6 +8,7 @@ module.exports = {
   aliases: [],
 
   builder: yargs => {
+    yargs = yargsBuilder.builder(yargs)
     yargs
       .positional('orgname', {
         describe: 'Alias of the org to log into'
@@ -17,16 +20,6 @@ module.exports = {
       .option('devhub', {
         alias: ['d'],
         describe: 'Specifies if the org being logged into is the new default DevHub',
-        type: 'boolean'
-      })
-      .option('json', {
-        alias: ['j'],
-        describe: 'Output in JSON format',
-        type: 'boolean'
-      })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
         type: 'boolean'
       })
       .option('sandbox', {
@@ -41,8 +34,7 @@ module.exports = {
   },
 
   handler: argv => {
-    if (!argv) argv = {}
-    if (argv.json) argv.quiet = true
+    argv = yargsBuilder.handler(argv)
     const alias = argv.alias || argv.orgname
     const devhub = argv.devhub
     const sandbox = argv.sandbox

@@ -1,4 +1,5 @@
 const config = require('../config/config')
+const yargsBuilder = require('../lib/yargsBuilder')
 
 const err = require('../helpers/errorOutput')
 const getResults = require('../helpers/compileResults')
@@ -20,6 +21,7 @@ module.exports = {
   aliases: ['flows'],
 
   builder: yargs => {
+    yargs = yargsBuilder.builder(yargs)
     yargs
       .positional('orgname', {
         describe: 'Alias of the org of which to deploy flows to'
@@ -38,11 +40,6 @@ module.exports = {
         describe: 'Attempt to force overwrite remote code with local changes',
         type: 'boolean'
       })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
-        type: 'boolean'
-      })
       .example('$0 deployflows', '- Deploys updated flow versions to default scratch org')
       .example(
         '$0 flows -a FlowTest --fd',
@@ -52,8 +49,7 @@ module.exports = {
   },
 
   handler: argv => {
-    if (!argv) argv = {}
-    if (argv.json) argv.quiet = true
+    argv = yargsBuilder.handler(argv)
     argv.alias = argv.alias || argv.orgname
 
     let numResults = 0

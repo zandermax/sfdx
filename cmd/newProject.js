@@ -1,4 +1,6 @@
 const config = require('../config/config')
+const yargsBuilder = require('../lib/yargsBuilder')
+
 const joinPath = require('path').join
 
 const shell = require('shelljs')
@@ -11,6 +13,7 @@ module.exports = {
   aliases: [],
 
   builder: yargs => {
+    yargs = yargsBuilder.builder(yargs)
     yargs
       .positional('newprojectname', {
         describe: 'Name of the new project to create'
@@ -24,16 +27,6 @@ module.exports = {
         describe: 'Directory in which to create the new Salesforce DX project',
         default: defaultPath
       })
-      .option('json', {
-        alias: ['j'],
-        describe: 'Output in JSON format',
-        type: 'boolean'
-      })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
-        type: 'boolean'
-      })
       .example('$0 newproject --name MyProject', "- Creates a new Salesforce DX project named 'MyProject'")
       .example(
         '$0 newproject NewProject --dir myDirectory',
@@ -42,8 +35,7 @@ module.exports = {
   },
 
   handler: argv => {
-    if (!argv) argv = {}
-    if (argv.json) argv.quiet = true
+    argv = yargsBuilder.handler(argv)
 
     let dir = argv.outputdirectory || config.projectPath
     let projectName = argv.projectname || argv.newprojectname

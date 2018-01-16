@@ -1,4 +1,5 @@
 const config = require('../config/config')
+const yargsBuilder = require('../lib/yargsBuilder')
 
 const getResults = require('../helpers/compileResults')
 const err = require('../helpers/errorOutput')
@@ -13,15 +14,11 @@ module.exports = {
   aliases: ['u'],
 
   builder: yargs => {
+    yargs = yargsBuilder.builder(yargs)
     yargs
       .option('nolocalhelp', {
         alias: ['nolocal', 'n'],
         describe: 'Do not store local help files',
-        type: 'boolean'
-      })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
         type: 'boolean'
       })
       .example('$0 update', '- Updates the Salesforce DX CLI, and writes local help files')
@@ -29,7 +26,7 @@ module.exports = {
   },
 
   handler: argv => {
-    if (!argv) argv = {}
+    argv = yargsBuilder.handler(argv)
     let numResults = 0
     const results = []
 

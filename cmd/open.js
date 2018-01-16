@@ -1,3 +1,5 @@
+const yargsBuilder = require('../lib/yargsBuilder')
+
 const shell = require('shelljs')
 
 module.exports = {
@@ -6,6 +8,7 @@ module.exports = {
   aliases: ['o'],
 
   builder: yargs => {
+    yargs = yargs = yargsBuilder.builder(yargs)
     yargs
       .positional('orgname', {
         describe: 'Alias of the org to open in the browser'
@@ -14,23 +17,12 @@ module.exports = {
         alias: ['org', 'a'],
         describe: 'Alias of the org to open in the browser'
       })
-      .option('json', {
-        alias: ['j'],
-        describe: 'Output in JSON format',
-        type: 'boolean'
-      })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
-        type: 'boolean'
-      })
       .example('$0 o MyOrg', "- Opens the org with alias 'MyOrg'")
       .example('$0 open --alias MyOtherOrg', "- Opens the org with alias 'MyOtherOrg'")
   },
 
   handler: argv => {
-    if (!argv) argv = {}
-    if (argv.json) argv.quiet = true
+    argv = yargsBuilder.handler(argv)
     const alias = argv.alias || argv.orgname
 
     if (!argv.quiet) console.log('Opening ' + (alias ? "'" + alias + "'" : 'default org') + '...')

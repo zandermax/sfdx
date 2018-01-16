@@ -1,4 +1,5 @@
 const config = require('../config/config')
+const yargsBuilder = require('../lib/yargsBuilder')
 
 const getResults = require('../helpers/compileResults')
 const err = require('../helpers/errorOutput')
@@ -11,6 +12,7 @@ module.exports = {
   aliases: [],
 
   builder: yargs => {
+    yargs = yargsBuilder.builder(yargs)
     yargs
       .positional('outputdirectory', {
         describe: 'Directory in which to place converted code into'
@@ -19,22 +21,11 @@ module.exports = {
         alias: ['dir', 'd'],
         describe: 'Directory in which to place converted code into'
       })
-      .option('json', {
-        alias: ['j'],
-        describe: 'Output in JSON format',
-        type: 'boolean'
-      })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
-        type: 'boolean'
-      })
       .example("$0 convert 'outputdir'", "- Converts local Salesforce DX code into the directory named 'outputdir/'")
   },
 
   handler: async argv => {
-    if (!argv) argv = {}
-    if (argv.json) argv.quiet = true
+    argv = yargsBuilder.handler(argv)
     const outputdir = argv.outputdir || argv.outputdirectory || config.mdApiDir
 
     if (!outputdir) {

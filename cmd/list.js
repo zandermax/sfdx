@@ -1,3 +1,5 @@
+const yargsBuilder = require('../lib/yargsBuilder')
+
 const shell = require('shelljs')
 
 module.exports = {
@@ -6,23 +8,13 @@ module.exports = {
   aliases: ['ls', 'l'],
 
   builder: yargs => {
+    yargs = yargsBuilder.builder(yargs)
     yargs
-      .option('json', {
-        alias: ['j'],
-        describe: 'Output in JSON format',
-        type: 'boolean'
-      })
-      .option('quiet', {
-        alias: ['q'],
-        describe: 'Quiet mode',
-        type: 'boolean'
-      })
       .example('$0 list', '- Lists all connected orgs')
   },
 
   handler: argv => {
-    if (!argv) argv = {}
-    if (argv.json) argv.quiet = true
+    argv = yargsBuilder.handler(argv)
     if (!argv.quiet) console.log('Getting list of connected orgs...')
 
     let listCommand = 'sfdx force:org:list'
