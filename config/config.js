@@ -9,10 +9,12 @@ const config = require('./default')
 
 // Load all local files
 let externalConfigFileList = []
-externalConfigFileList = fs.readdirSync(localConfigPath)
-externalConfigFileList = externalConfigFileList.filter(fileName => {
-  return fileName.includes('sfdx')
-})
+if (fs.existsSync(localConfigPath)) {
+  externalConfigFileList = fs.readdirSync(localConfigPath)
+  externalConfigFileList = externalConfigFileList.filter(fileName => {
+    return fileName.includes('sfdx')
+  })
+}
 
 for (let file of externalConfigFileList) {
   const configFile = require(joinPath(localConfigPath, file))
