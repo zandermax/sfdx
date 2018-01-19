@@ -1,5 +1,13 @@
 # sfdx
 
+[![NPM version][npm-version-image]][npm-version-url]
+[![NPM version][npm-downloads-image]][npm-downloads-url]
+
+[npm-downloads-url]: https://www.npmjs.com/package/sfdx
+[npm-downloads-image]: https://img.shields.io/npm/dt/sfdx.svg
+[npm-version-url]: https://www.npmjs.com/package/sfdx
+[npm-version-image]: https://img.shields.io/npm/v/sfdx.svg
+
 sfdx is a node module used to interact with Salesforce DX commands, hopefully in a more intuitive way than with the DX CLI itself. sfdx is meant to take some of the nuances of using Salesforce DX and make common operations easier.
 
 ## Installation
