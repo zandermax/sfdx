@@ -1,6 +1,6 @@
 {
   "name": "sfdx",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Performs Salesforce DX operations with ease! Life is good.",
   "main": "index.js",
   "scripts": {
