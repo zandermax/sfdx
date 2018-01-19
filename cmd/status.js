@@ -20,13 +20,11 @@ module.exports = {
       .option('remote', {
         alias: ['r'],
         describe: 'Fetch only changes made remotely',
-        conflicts: 'local',
         type: 'boolean'
       })
       .option('local', {
         alias: ['l'],
         describe: 'Fetch only changes in code locally',
-        conflicts: 'remote',
         type: 'boolean'
       })
       .example('$0 status MyOrg', "- Gets the local and remote code status of 'MyOrg'")
@@ -39,14 +37,17 @@ module.exports = {
     let output = 'Checking '
     let statusCommand = 'sfdx force:source:status'
 
-    if (argv.remote) {
-      output += 'remote '
-      statusCommand += ' --remote'
-    } else if (argv.local) {
-      output += 'local '
-      statusCommand += ' --local'
-    } else {
+    // If both options are true or both options are false, show both statuses
+    if (argv.remote === argv.local) {
       statusCommand += ' --all'
+    } else {
+      if (argv.remote) {
+        output += 'remote '
+        statusCommand += ' --remote'
+      } else if (argv.local) {
+        output += 'local '
+        statusCommand += ' --local'
+      }
     }
     if (alias) statusCommand += ' --targetusername ' + alias
     if (argv.json) statusCommand += ' --json'
