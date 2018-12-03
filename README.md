@@ -10,6 +10,11 @@
 
 sfdx is a node module used to interact with Salesforce DX commands, hopefully in a more intuitive way than with the DX CLI itself. sfdx is meant to take some of the nuances of using Salesforce DX and make common operations easier.
 
+## Help / Documentation
+
+* [Node command API reference here](https://github.com/axlemax/sfdx/blob/master/docs/api.md).
+* [Configuration values reference here](https://github.com/axlemax/sfdx/blob/master/docs/config.md).
+
 ## Installation
 
 Make sure you have the [Salesforce DX CLI](https://developer.salesforce.com/tools/sfdxcli) installed first! This module will let you know if you don't, but it will leave it up to you to actually install it.
@@ -90,9 +95,9 @@ Then, if you save that file as `"cli.js"` and you add something like the followi
 ...
 ````
 
-## Help / Documentation
+** For help with the terminal commands, which includes seeing a command's shortcuts, use `--help` (or `-h`) on any command. To see help for ALL commands, use `--help` (or `-h`) on the root command (for example `dx -h`)!
+
+## Further Help / Documentation
 
 * [Node command API reference here](https://github.com/axlemax/sfdx/blob/master/docs/api.md).
 * [Configuration values reference here](https://github.com/axlemax/sfdx/blob/master/docs/config.md).
-
-** For help with the terminal commands, which includes seeing a command's shortcuts, use `--help` (or `-h`) on any command. To see help for ALL commands, use `--help` (or `-h`) on the root command (for example `dx -h`)!
