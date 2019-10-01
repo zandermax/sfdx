@@ -4,7 +4,9 @@
   "description": "Performs Salesforce DX operations with ease! Life is good.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [
     "CLI",
@@ -28,6 +30,8 @@
     "jsonfile": "^4.0.0",
     "path": "^0.12.7",
     "shelljs": "^0.7.8",
-    "xml2js": "^0.4.19"
-  }
+    "xml2js": "^0.4.19",
+    "snyk": "^1.189.0"
+  },
+  "snyk": true
 }
