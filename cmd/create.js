@@ -86,20 +86,23 @@ function createOrg (orgname, argv) {
   if (!alias || argv.defaultorg) createCommand += ' --setdefaultusername'
   if (argv.json) createCommand += ' --json'
 
+  let username;
   results[numResults++] = shell.exec(createCommand)
 
-  if (results[numResults - 1].stderr || results[numResults - 1].stdout.indexOf('ERROR') != -1) {
+  let lastResult = results[numResults - 1];
+  if (lastResult.stderr || lastResult.stdout.indexOf('ERROR') != -1) {
     console.error(
       err('Could not create a new scratch org. Please ensure that the default developer hub is configured properly.')
     )
     process.exit(1)
   } else {
+    let username = /\S*@example.com/.exec(lastResult.stdout)[0];
     if (!argv.quiet) console.log('Generating user password' + (alias ? " for org '" + alias + "'" : '') + '...')
 
     // Supress output of user password, since it displays redundant information
     const silentState = shell.config.silent
     shell.config.silent = true
-    results[numResults++] = shell.exec('sfdx force:user:password:generate')
+    results[numResults++] = shell.exec(`sfdx force:user:password:generate --targetusername ${username}`)
     shell.config.silent = silentState // restore old silent state
 
     if (!argv.quiet) console.log()
