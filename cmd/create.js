@@ -86,7 +86,6 @@ function createOrg (orgname, argv) {
   if (!alias || argv.defaultorg) createCommand += ' --setdefaultusername'
   if (argv.json) createCommand += ' --json'
 
-  let username;
   results[numResults++] = shell.exec(createCommand)
 
   let lastResult = results[numResults - 1];
