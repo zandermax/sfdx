@@ -14,8 +14,8 @@ sfdx is a node module used to interact with Salesforce DX commands, hopefully in
 
 ## Help / Documentation
 
-* [Node command API reference here](https://github.com/axlemax/sfdx/blob/master/docs/api.md).
-* [Configuration values reference here](https://github.com/axlemax/sfdx/blob/master/docs/config.md).
+* [Node command API reference here](https://github.com/zandermax/sfdx/blob/master/docs/api.md).
+* [Configuration values reference here](https://github.com/zandermax/sfdx/blob/master/docs/config.md).
 
 ## Installation
 
@@ -27,7 +27,7 @@ npm i sfdx --save
 
 ## Examples
 
-(Sample project [here](https://github.com/axlemax/sfdx-example).)
+(Sample project [here](https://github.com/zandermax/sfdx-example).)
 
 Here is a function that one might use to spin up an org and push code into it:
 
@@ -101,5 +101,5 @@ Then, if you save that file as `"cli.js"` and you add something like the followi
 
 ## Further Help / Documentation
 
-* [Node command API reference here](https://github.com/axlemax/sfdx/blob/master/docs/api.md).
-* [Configuration values reference here](https://github.com/axlemax/sfdx/blob/master/docs/config.md).
+* [Node command API reference here](https://github.com/zandermax/sfdx/blob/master/docs/api.md).
+* [Configuration values reference here](https://github.com/zandermax/sfdx/blob/master/docs/config.md).

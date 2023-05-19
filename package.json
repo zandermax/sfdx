@@ -1,37 +1,42 @@
 {
-  "name": "sfdx",
-  "version": "1.4.2",
-  "description": "Performs Salesforce DX operations with ease! Life is good.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
-  },
-  "keywords": [
-    "CLI",
-    "Salesforce",
-    "SalesforceDX",
-    "SFDX"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/axlemax/sfdx.git"
-  },
-  "author": "Zander Maxwell",
-  "license": "MIT",
-  "homepage": "https://github.com/axlemax/sfdx/blob/master/README.md",
-  "engines": {
-    "node": ">=8.0.0"
-  },
-  "dependencies": {
-    "fs": "0.0.1-security",
-    "inquirer": "^7.0.5",
-    "jsonfile": "^4.0.0",
-    "path": "^0.12.7",
-    "shelljs": "^0.8.5",
-    "xml2js": "^0.5.0",
-    "snyk": "^1.680.0"
-  },
-  "snyk": true
+	"name": "sfdx",
+	"version": "1.4.3",
+	"description": "Performs Salesforce DX operations with ease! Life is good.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"snyk-protect": "snyk protect",
+		"prepare": "npm run snyk-protect"
+	},
+	"keywords": [
+		"CLI",
+		"Salesforce",
+		"SalesforceDX",
+		"SFDX"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/zandermax/sfdx.git"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/zandermax"
+	},
+	"author": {
+		"name": "🎩 Ȥ𐋎𐊪ᗫ𐊤ᖇ ញαⵅᏇᗴᘂᘂ 🔱",
+		"email": "zandermaxwell@hey.com"
+	},
+	"license": "MIT",
+	"homepage": "https://github.com/zandermax/sfdx/blob/master/README.md",
+	"engines": {
+		"node": ">=8.0.0"
+	},
+	"dependencies": {
+		"inquirer": "^7.0.5",
+		"jsonfile": "^4.0.0",
+		"path": "^0.12.7",
+		"shelljs": "^0.8.5",
+		"xml2js": "^0.5.0",
+		"snyk": "^1.680.0"
+	},
+	"snyk": true
 }

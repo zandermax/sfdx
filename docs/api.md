@@ -1,6 +1,6 @@
 # Command Reference
 
-Also see configuration values [here](https://github.com/axlemax/sfdx/blob/master/docs/config.md).
+Also see configuration values [here](https://github.com/zandermax/sfdx/blob/master/docs/config.md).
 
 ## __ALL COMMANDS:__
 
@@ -32,7 +32,7 @@ Also see configuration values [here](https://github.com/axlemax/sfdx/blob/master
 
 >Convert local DX code into metadata format.
 
-  `options.outputdirectory` *[ string ]* - Directory to use for converted code output ( _*DEFAULT*_: [_config.mdApiDir_](https://github.com/axlemax/sfdx/blob/master/docs/config.md) )
+  `options.outputdirectory` *[ string ]* - Directory to use for converted code output ( _*DEFAULT*_: [_config.mdApiDir_](https://github.com/zandermax/sfdx/blob/master/docs/config.md) )
 
 ### create( _options_ )
 
@@ -42,7 +42,7 @@ Also see configuration values [here](https://github.com/axlemax/sfdx/blob/master
 
   `options.days` *[ integer ]* - Number of days before the org expires (max 30)
 
-  `options.definitionfile` *[ string ]* - Definition file to use when creating the org ( _*DEFAULT*_: [_config.scratchDefFile_](https://github.com/axlemax/sfdx/blob/master/docs/config.md) )
+  `options.definitionfile` *[ string ]* - Definition file to use when creating the org ( _*DEFAULT*_: [_config.scratchDefFile_](https://github.com/zandermax/sfdx/blob/master/docs/config.md) )
 
 ### delete( _options_ )
 
@@ -58,7 +58,7 @@ Also see configuration values [here](https://github.com/axlemax/sfdx/blob/master
 
   `options.alias` *[ string ]* - Alias of the org to deploy code into
 
-  `options.outputdirectory` *[ string ]* - Directory containing the Metadata API source code to deploy ( _*DEFAULT*_: [_config.mdApiDir_](https://github.com/axlemax/sfdx/blob/master/docs/config.md) )
+  `options.outputdirectory` *[ string ]* - Directory containing the Metadata API source code to deploy ( _*DEFAULT*_: [_config.mdApiDir_](https://github.com/zandermax/sfdx/blob/master/docs/config.md) )
 
 ### deployFlows( _options_ )
 
@@ -88,9 +88,9 @@ Also see configuration values [here](https://github.com/axlemax/sfdx/blob/master
 
 >Creates a new Salesforce DX project.
 
-  `options.outputdirectory` *[ string ]* - Directory in which to create the new Salesforce DX project ( _*DEFAULT*_: [_config.projectPath_](https://github.com/axlemax/sfdx/blob/master/docs/config.md) )
+  `options.outputdirectory` *[ string ]* - Directory in which to create the new Salesforce DX project ( _*DEFAULT*_: [_config.projectPath_](https://github.com/zandermax/sfdx/blob/master/docs/config.md) )
 
-  `options.projectname` *[ string ]* - Name of the new project to create ( _*DEFAULT*_: [_config.projectDir_](https://github.com/axlemax/sfdx/blob/master/docs/config.md) )
+  `options.projectname` *[ string ]* - Name of the new project to create ( _*DEFAULT*_: [_config.projectDir_](https://github.com/zandermax/sfdx/blob/master/docs/config.md) )
 
 ### open( _options_ )
 
