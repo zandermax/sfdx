@@ -1,12 +1,12 @@
 {
 	"name": "@zandermax/sfdx",
-	"version": "1.4.5",
+	"version": "1.4.6",
 	"description": "Performs Salesforce DX operations with ease! Life is good.",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"snyk-protect": "snyk protect",
-		"prepare": "npm run snyk-protect"
+		"prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
 	},
 	"keywords": [
 		"CLI",
@@ -31,6 +31,7 @@
 		"node": ">=8.0.0"
 	},
 	"dependencies": {
+		"@snyk/protect": "^1.657.0",
 		"inquirer": "^7.0.5",
 		"jsonfile": "^4.0.0",
 		"path": "^0.12.7",
