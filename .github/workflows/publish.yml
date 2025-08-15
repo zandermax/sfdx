@@ -3,12 +3,12 @@ name: Publish to npm (tag v*)
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'
   workflow_dispatch: {}
 
 permissions:
   contents: read
-  id-token: write # for npm --provenance
+  id-token: write   # for npm --provenance
 
 jobs:
   publish:
@@ -19,8 +19,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "lts/*"
-          registry-url: "https://registry.npmjs.org"
+          node-version: 'lts/*'
+          registry-url: 'https://registry.npmjs.org'
           always-auth: true
 
       - name: Install
@@ -39,7 +39,9 @@ jobs:
           [[ "$TAG" == "$PKG_VERSION" ]] || { echo "Tag v$TAG != package.json $PKG_VERSION"; exit 1; }
 
       - name: Configure npm auth
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        run: |
+          echo "registry=https://registry.npmjs.org" > ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 

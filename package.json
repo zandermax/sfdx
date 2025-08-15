@@ -26,9 +26,6 @@
   "license": "MIT",
   "main": "index.js",
   "name": "@zandermax/sfdx",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/zandermax"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zandermax/sfdx.git"
