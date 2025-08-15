@@ -26,6 +26,11 @@ jobs:
       - name: Install
         run: npm ci
 
+      - name: Debug npm identity (temporary)
+        run: |
+          npm whoami
+          npm config get registry
+
       - name: Build
         run: npm run build --if-present
 
