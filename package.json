@@ -36,7 +36,7 @@
   "scripts": {
     "prepare": "npm run snyk-protect",
     "snyk-protect": "snyk-protect",
-    "test": "no tests yet!"
+    "test": "echo 'no tests yet!' && exit 0"
   },
   "snyk": true,
   "version": "1.7.0"
