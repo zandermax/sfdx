@@ -1,43 +1,43 @@
 {
-	"name": "@zandermax/sfdx",
-	"version": "1.6.0",
-	"description": "Performs Salesforce DX operations with ease! Life is good.",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"prepare": "npm run snyk-protect",
-		"snyk-protect": "snyk-protect"
-	},
-	"keywords": [
-		"CLI",
-		"Salesforce",
-		"SalesforceDX",
-		"SFDX"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/zandermax/sfdx.git"
-	},
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com/zandermax"
-	},
-	"author": {
-		"name": "🎩 Ȥ𐋎𐊪ᗫ𐊤ᖇ ញαⵅᏇᗴᘂᘂ 🔱",
-		"email": "zandermaxwell@hey.com"
-	},
-	"license": "MIT",
-	"homepage": "https://github.com/zandermax/sfdx/blob/master/README.md",
-	"engines": {
-		"node": ">=8.0.0"
-	},
-	"dependencies": {
-		"@snyk/protect": "^1.657.0",
-		"inquirer": "^7.0.5",
-		"jsonfile": "^4.0.0",
-		"path": "^0.12.7",
-		"shelljs": "^0.8.5",
-		"xml2js": "^0.5.0",
-		"snyk": "^1.1064.0"
-	},
-	"snyk": true
+  "author": {
+    "email": "zandermaxwell@hey.com",
+    "name": "🎩 Ȥ𐋎𐊪ᗫ𐊤ᖇ ញαⵅᏇᗴᘂᘂ 🔱"
+  },
+  "dependencies": {
+    "@snyk/protect": "^1.657.0",
+    "inquirer": "^7.0.5",
+    "jsonfile": "^4.0.0",
+    "path": "^0.12.7",
+    "shelljs": "^0.8.5",
+    "snyk": "^1.1064.0",
+    "xml2js": "^0.5.0"
+  },
+  "description": "Performs Salesforce DX operations with ease! Life is good.",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "homepage": "https://github.com/zandermax/sfdx/blob/master/README.md",
+  "keywords": [
+    "CLI",
+    "Salesforce",
+    "SalesforceDX",
+    "SFDX"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "@zandermax/sfdx",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/zandermax"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zandermax/sfdx.git"
+  },
+  "scripts": {
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect",
+    "test": "no tests yet!"
+  },
+  "snyk": true,
+  "version": "1.6.0"
 }
