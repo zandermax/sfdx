@@ -25,7 +25,10 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "name": "@zandermax/sfdx",
+  "name": "sfdx",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zandermax/sfdx.git"
@@ -36,5 +39,5 @@
     "test": "echo 'no tests yet!' && exit 0"
   },
   "snyk": true,
-  "version": "1.8.3"
+  "version": "1.8.1"
 }
