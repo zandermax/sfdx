@@ -39,5 +39,5 @@
     "test": "echo 'no tests yet!' && exit 0"
   },
   "snyk": true,
-  "version": "1.8.5"
+  "version": "1.8.6"
 }
