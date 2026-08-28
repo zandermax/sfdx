@@ -69,19 +69,15 @@ module.exports = {
       return
     }
 
-    const deleteConfirmed = 'deleteAll'
-
     argv.alias = orgsToDelete
 
     if (!argv.force) {
-      const { default: inquirer } = await import('inquirer')
-      const answers = await inquirer.prompt({
+      const { default: confirm } = await import('@inquirer/confirm')
+      const shouldDelete = await confirm({
         default: false,
-        message: 'Are you sure you want to delete all un-named non-default scratch orgs?',
-        name: deleteConfirmed,
-        type: 'confirm'
+        message: 'Are you sure you want to delete all un-named non-default scratch orgs?'
       })
-      if (answers[deleteConfirmed]) {
+      if (shouldDelete) {
         argv.force = true
         deleteOrgs(argv)
       }

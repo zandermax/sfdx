@@ -7,7 +7,6 @@ const getResults = require('../helpers/compileResults')
 const fs = require('node:fs')
 const joinPath = require('node:path').join
 const shell = require('shelljs')
-const xml2js = require('xml2js')
 
 // Set global variables
 const dxSourceDir = config.dxSourceDir
@@ -146,16 +145,14 @@ const getfilesToDelete = async argv => {
 
   const flowDefs = []
   const regexDefFilename = /.+(?=\.flowDefinition-meta\.xml)/
+  const regexActiveVersion = /<activeVersionNumber>(\d+)<\/activeVersionNumber>/
   for (const defFile of defFileList) {
     const defFilename = regexDefFilename.exec(defFile)[0]
 
     // Get active version number from definition files
-    const parser = new xml2js.Parser()
-    const fileData = await fs.readFileSync(joinPath(defPath, defFile))
-    parser.parseString(fileData, (err, result) => {
-      const defVersion = parseInt(result['FlowDefinition']['activeVersionNumber'])
-      flowDefs[defFilename] = { activeVersion: defVersion }
-    })
+    const fileData = fs.readFileSync(joinPath(defPath, defFile), 'utf8')
+    const defVersion = parseInt(regexActiveVersion.exec(fileData)[1])
+    flowDefs[defFilename] = { activeVersion: defVersion }
   }
 
   // For the filename, look at everything until '-' followed by a number
@@ -203,8 +200,7 @@ const getfilesToDelete = async argv => {
           questions.push({
             default: false,
             message: 'Delete ' + flowFile + '?',
-            name: flowFilename + '-' + flowVersion,
-            type: 'confirm'
+            name: flowFilename + '-' + flowVersion
           })
         }
       }
@@ -212,10 +208,10 @@ const getfilesToDelete = async argv => {
   }
 
   if (!argv.forcedelete) {
-    const { default: inquirer } = await import('inquirer')
-    const answers = await inquirer.prompt(questions)
-    for (let toDelete in answers) {
-      if (answers[toDelete]) filesToDelete.push(toDelete + '.flow-meta.xml')
+    const { default: confirm } = await import('@inquirer/confirm')
+    for (const question of questions) {
+      const shouldDelete = await confirm({ default: question.default, message: question.message })
+      if (shouldDelete) filesToDelete.push(question.name + '.flow-meta.xml')
     }
   }
   return filesToDelete

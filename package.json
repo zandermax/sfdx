@@ -4,10 +4,8 @@
     "name": "🎩 Ȥ𐋎𐊪ᗫ𐊤ᖇ ញαⵅᏇᗴᘂᘂ 🔱"
   },
   "dependencies": {
-    "inquirer": "^14.2.0",
-    "jsonfile": "^6.2.1",
-    "shelljs": "^0.10.0",
-    "xml2js": "^0.6.2"
+    "@inquirer/confirm": "^6.3.0",
+    "shelljs": "^0.10.0"
   },
   "description": "Performs Salesforce DX operations with ease! Life is good.",
   "devDependencies": {

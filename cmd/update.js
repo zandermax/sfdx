@@ -5,7 +5,7 @@ const getResults = require('../helpers/compileResults')
 const err = require('../helpers/errorOutput')
 
 const joinPath = require('node:path').join
-const jsonfile = require('jsonfile')
+const fs = require('node:fs')
 const shell = require('shelljs')
 
 module.exports = {
@@ -62,10 +62,8 @@ async function outputFile(argv) {
   results[numResults++] = await shell.exec('sfdx force:doc:commands:display --json > ' + outputfile)
 
   try {
-    await jsonfile.writeFileSync(newfile, jsonfile.readFileSync(outputfile), { spaces: 2 }, err => {
-      if (!argv.quiet) console.error(err)
-      throw new Error(err)
-    })
+    const contents = JSON.parse(fs.readFileSync(outputfile, 'utf8'))
+    fs.writeFileSync(newfile, JSON.stringify(contents, null, 2))
   } catch (fileError) {
     results[numResults++] = { stderr: fileError }
   }

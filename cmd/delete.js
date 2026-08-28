@@ -67,16 +67,13 @@ function problemsHappened(result) {
 
 async function deleteOrg(orgName, argv) {
   if (!argv.force) {
-    const { default: inquirer } = await import('inquirer')
-    const deleteConfirmed = 'deleteOrg'
-    const answers = await inquirer.prompt({
+    const { default: confirm } = await import('@inquirer/confirm')
+    const shouldDelete = await confirm({
       default: false,
-      message: "Do you want to delete the org '" + orgName + "'?",
-      name: deleteConfirmed,
-      type: 'confirm'
+      message: "Do you want to delete the org '" + orgName + "'?"
     })
 
-    if (answers[deleteConfirmed]) {
+    if (shouldDelete) {
       return await performDeletion(orgName, argv)
     } else {
       return {}
