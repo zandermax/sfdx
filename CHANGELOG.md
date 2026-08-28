@@ -1,3 +1,10 @@
+## [1.8.102](https://github.com/zandermax/sfdx/compare/v1.8.101...v1.8.102) (2026-08-28)
+
+
+### Bug Fixes
+
+* slim production dependencies from ~7.3MB to ~2.4MB ([b21c2d0](https://github.com/zandermax/sfdx/commit/b21c2d07f6402d563e37cc74c3a52b9aa370b223))
+
 ## [1.8.101](https://github.com/zandermax/sfdx/compare/v1.8.100...v1.8.101) (2026-08-28)
 
 
