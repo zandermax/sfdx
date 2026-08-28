@@ -4,7 +4,6 @@ const yargsBuilder = require('../lib/yargsBuilder')
 const getResults = require('../helpers/compileResults')
 const err = require('../helpers/errorOutput')
 
-const isArray = require('util').isArray
 const shell = require('shelljs')
 
 module.exports = {
@@ -53,7 +52,7 @@ module.exports = {
     argv = yargsBuilder.handler(argv)
     const orgList = argv.alias || argv.orgname
 
-    if (isArray(argv.alias)) {
+    if (Array.isArray(argv.alias)) {
       let results = []
       for (let org of orgList) {
         results.push(createOrg(org, argv))
@@ -65,7 +64,7 @@ module.exports = {
   }
 }
 
-function createOrg (orgname, argv) {
+function createOrg(orgname, argv) {
   const alias = orgname || argv.alias
   const days = argv.days
   const defFile = argv.definitionfile || config.scratchDefFile
@@ -88,14 +87,14 @@ function createOrg (orgname, argv) {
 
   results[numResults++] = shell.exec(createCommand)
 
-  let lastResult = results[numResults - 1];
+  let lastResult = results[numResults - 1]
   if (lastResult.stderr || lastResult.stdout.indexOf('ERROR') != -1) {
     console.error(
       err('Could not create a new scratch org. Please ensure that the default developer hub is configured properly.')
     )
     process.exit(1)
   } else {
-    let username = /\S*@example.com/.exec(lastResult.stdout)[0];
+    let username = /\S*@example.com/.exec(lastResult.stdout)[0]
     if (!argv.quiet) console.log('Generating user password' + (alias ? " for org '" + alias + "'" : '') + '...')
 
     // Supress output of user password, since it displays redundant information

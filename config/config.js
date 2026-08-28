@@ -1,5 +1,5 @@
-const joinPath = require('path').join
-const fs = require('fs')
+const joinPath = require('node:path').join
+const fs = require('node:fs')
 const shell = require('shelljs')
 
 const localConfigPath = joinPath(shell.pwd().stdout, 'config')

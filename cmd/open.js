@@ -8,7 +8,7 @@ module.exports = {
   aliases: ['o'],
 
   builder: yargs => {
-    yargs = yargs = yargsBuilder.builder(yargs)
+    yargs = yargsBuilder.builder(yargs)
     yargs
       .positional('orgname', {
         describe: 'Alias of the org to open in the browser'

@@ -4,17 +4,26 @@
     "name": "🎩 Ȥ𐋎𐊪ᗫ𐊤ᖇ ញαⵅᏇᗴᘂᘂ 🔱"
   },
   "dependencies": {
-    "@snyk/protect": "^1.657.0",
-    "inquirer": "^7.0.5",
-    "jsonfile": "^4.0.0",
-    "path": "^0.12.7",
-    "shelljs": "^0.8.5",
-    "snyk": "^1.1064.0",
-    "xml2js": "^0.5.0"
+    "@snyk/protect": "^1.1307.0",
+    "inquirer": "^14.2.0",
+    "jsonfile": "^6.2.1",
+    "shelljs": "^0.10.0",
+    "snyk": "^1.1307.0",
+    "xml2js": "^0.6.2"
   },
   "description": "Performs Salesforce DX operations with ease! Life is good.",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@semantic-release/changelog": "^7.0.0",
+    "@semantic-release/git": "^11.0.1",
+    "eslint": "^10.9.1",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.11.0",
+    "prettier": "^3.9.6",
+    "semantic-release": "^25.0.9"
+  },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=22"
   },
   "homepage": "https://github.com/zandermax/sfdx/blob/master/README.md",
   "keywords": [
@@ -34,9 +43,12 @@
     "url": "git+https://github.com/zandermax/sfdx.git"
   },
   "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
     "prepare": "npm run snyk-protect",
     "snyk-protect": "snyk-protect",
-    "test": "echo 'no tests yet!' && exit 0"
+    "test": "node --test"
   },
   "snyk": true,
   "version": "1.8.100"

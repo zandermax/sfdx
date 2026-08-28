@@ -3,8 +3,6 @@ const yargsBuilder = require('../lib/yargsBuilder')
 const err = require('../helpers/errorOutput')
 const getResults = require('../helpers/compileResults')
 
-const inquirer = require('inquirer')
-const isArray = require('util').isArray
 const shell = require('shelljs')
 
 module.exports = {
@@ -45,7 +43,7 @@ module.exports = {
 
     let numResults = 0
     const results = []
-    if (isArray(orgList)) {
+    if (Array.isArray(orgList)) {
       for (let org of orgList) {
         results[numResults++] = await deleteOrg(org, argv)
         let lastResult = results[numResults - 1]
@@ -61,14 +59,15 @@ module.exports = {
   }
 }
 
-function problemsHappened (result) {
+function problemsHappened(result) {
   const errorMsg = err('Deletion failed.')
   console.error(errorMsg)
   return result
 }
 
-async function deleteOrg (orgName, argv) {
+async function deleteOrg(orgName, argv) {
   if (!argv.force) {
+    const { default: inquirer } = await import('inquirer')
     const deleteConfirmed = 'deleteOrg'
     const answers = await inquirer.prompt({
       default: false,
@@ -87,7 +86,7 @@ async function deleteOrg (orgName, argv) {
   }
 }
 
-async function performDeletion (alias, argv) {
+async function performDeletion(alias, argv) {
   if (!alias) {
     let errorMsg = err('No org name specified to delete.')
     if (!argv.quiet) console.error(errorMsg)

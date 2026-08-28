@@ -1,0 +1,4 @@
+node_modules/
+docs/sfdx-help*.txt
+docs/sfdx-help-extended.json
+CHANGELOG.md

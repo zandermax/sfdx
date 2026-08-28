@@ -2,8 +2,8 @@ const COMMAND_DIR = 'cmd'
 
 const init = require('./lib/init')
 
-const fs = require('fs')
-const joinPath = require('path').join
+const fs = require('node:fs')
+const joinPath = require('node:path').join
 const modulePath = joinPath(__dirname, COMMAND_DIR)
 
 const fileList = fs.readdirSync(modulePath)

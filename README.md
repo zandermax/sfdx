@@ -14,8 +14,8 @@ sfdx is a node module used to interact with Salesforce DX commands, hopefully in
 
 ## Help / Documentation
 
-* [Node command API reference here](https://github.com/zandermax/sfdx/blob/master/docs/api.md).
-* [Configuration values reference here](https://github.com/zandermax/sfdx/blob/master/docs/config.md).
+- [Node command API reference here](https://github.com/zandermax/sfdx/blob/master/docs/api.md).
+- [Configuration values reference here](https://github.com/zandermax/sfdx/blob/master/docs/config.md).
 
 ## Installation
 
@@ -31,7 +31,7 @@ npm i sfdx --save
 
 Here is a function that one might use to spin up an org and push code into it:
 
-````javascript
+```javascript
 const sfdx = require('sfdx')
 
 // options - all options to use for the relevant commands
@@ -44,11 +44,11 @@ function spinup(options) {
   // Open the newly-created scratch org in a browser window
   sfdx.open(options)
 }
-````
+```
 
 As another example, here is a function that pulls code from a scratch org, converts the local Salesforce DX code into Metadata API format, and deploys the converted code into a production (i.e. non-scratch) org.
 
-````javascript
+```javascript
 const sfdx = require('sfdx')
 
 // options - all options to use for the relevant commands
@@ -64,15 +64,15 @@ function toproduction(options) {
     deployto: 'MySandbox'
   })
 }
-````
+```
 
 ## To import all commands to be used in a CLI
 
-  > All of the commands have a relevant terminal command (*including shortcuts!*), thanks to [yargs](https://github.com/yargs/yargs). To import all of them, simply use the `.yargs` property of each to create the relevant command.
+> All of the commands have a relevant terminal command (_including shortcuts!_), thanks to [yargs](https://github.com/yargs/yargs). To import all of them, simply use the `.yargs` property of each to create the relevant command.
 
 For example, to import all of the commands, do the following (ensure you have [yargs](https://github.com/yargs/yargs) installed):
 
-````javascript
+```javascript
 #!/usr/bin/env node
 
 const sfdx = require('sfdx')
@@ -85,21 +85,34 @@ for (let command of Object.keys(sfdx)) {
 
 // Initialize yargs commands
 yargs.argv
-````
+```
 
 Then, if you save that file as `"cli.js"` and you add something like the following to your `package.json` and then run `"npm link"`, the command `"dx l"` will list all connected orgs (for example)!
 
-````json
+```json
 ...
 "bin": {
     "dx": "cli.js"
   },
 ...
-````
+```
 
 ** For help with the terminal commands, which includes seeing a command's shortcuts, use `--help` (or `-h`) on any command. To see help for ALL commands, use `--help` (or `-h`) on the root command (for example `dx -h`)!
 
 ## Further Help / Documentation
 
-* [Node command API reference here](https://github.com/zandermax/sfdx/blob/master/docs/api.md).
-* [Configuration values reference here](https://github.com/zandermax/sfdx/blob/master/docs/config.md).
+- [Node command API reference here](https://github.com/zandermax/sfdx/blob/master/docs/api.md).
+- [Configuration values reference here](https://github.com/zandermax/sfdx/blob/master/docs/config.md).
+
+## Releasing
+
+Releases to npm are fully automated with [semantic-release](https://semantic-release.gitbook.io/), driven by
+[Conventional Commit](https://www.conventionalcommits.org/) messages on `master`:
+
+- `fix: ...` → patch release
+- `feat: ...` → minor release
+- A `BREAKING CHANGE:` footer (or `!` after the type/scope) → major release
+
+On every push to `master`, CI lints and tests the project, then `semantic-release` determines the next version,
+updates `package.json`/`CHANGELOG.md`, tags the commit, publishes to npm, and creates a GitHub release. No manual
+version bump or tag push is required.

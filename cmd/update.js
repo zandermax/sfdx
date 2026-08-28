@@ -4,7 +4,7 @@ const yargsBuilder = require('../lib/yargsBuilder')
 const getResults = require('../helpers/compileResults')
 const err = require('../helpers/errorOutput')
 
-const joinPath = require('path').join
+const joinPath = require('node:path').join
 const jsonfile = require('jsonfile')
 const shell = require('shelljs')
 
@@ -49,7 +49,7 @@ module.exports = {
   }
 }
 
-async function outputFile (argv) {
+async function outputFile(argv) {
   let numResults = 0
   const results = []
   const today = new Date()

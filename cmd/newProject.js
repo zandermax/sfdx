@@ -1,7 +1,7 @@
 const config = require('../config/config')
 const yargsBuilder = require('../lib/yargsBuilder')
 
-const joinPath = require('path').join
+const joinPath = require('node:path').join
 
 const shell = require('shelljs')
 

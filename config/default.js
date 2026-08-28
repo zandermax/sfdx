@@ -1,7 +1,7 @@
-const joinPath = require('path').join
+const joinPath = require('node:path').join
 const shell = require('shelljs')
 
-const regex = /[^\/]+/g
+const regex = /[^/]+/g
 const projectPath = shell.pwd().stdout
 const match = projectPath.match(regex)
 const projectDir = match.pop()
@@ -16,7 +16,7 @@ module.exports = {
   /**
    *  Directory to use for Metadata API converted source
    * @default config.projectPath + '/mdapioutput'
-  */
+   */
   mdApiDir: joinPath(projectPath, 'mdapioutput'),
 
   /**
@@ -44,8 +44,7 @@ module.exports = {
 
   /**
    * Full path of default scratch org definition file
-  * @default config.projectPath + '/config/project-scratch-def.json'
-  */
-  scratchDefFile: joinPath(projectPath, 'config', 'project-scratch-def.json'),
-
+   * @default config.projectPath + '/config/project-scratch-def.json'
+   */
+  scratchDefFile: joinPath(projectPath, 'config', 'project-scratch-def.json')
 }

@@ -3,9 +3,8 @@ const yargsBuilder = require('../lib/yargsBuilder')
 
 const deleteOrgs = require('./delete').handler
 
-const fs = require('fs')
-const inquirer = require('inquirer')
-const joinPath = require('path').join
+const fs = require('node:fs')
+const joinPath = require('node:path').join
 const shell = require('shelljs')
 
 module.exports = {
@@ -25,7 +24,7 @@ module.exports = {
       .example('$0 cl -f', '- Forcibly deletes all non-default scratch orgs without aliases')
   },
 
-  handler: argv => {
+  handler: async argv => {
     argv = yargsBuilder.handler(argv)
     if (!argv.quiet) console.log('Checking the list of scratch orgs...')
 
@@ -45,7 +44,7 @@ module.exports = {
 
     let areOrgsToDelete = false
     let numOrgsToDelete = 0
-    function checkOrgs (org) {
+    function checkOrgs(org) {
       const deletable = !org.alias && !org.isDefaultUsername
       if (deletable) {
         if (!areOrgsToDelete) {
@@ -75,19 +74,17 @@ module.exports = {
     argv.alias = orgsToDelete
 
     if (!argv.force) {
-      inquirer
-        .prompt({
-          default: false,
-          message: 'Are you sure you want to delete all un-named non-default scratch orgs?',
-          name: deleteConfirmed,
-          type: 'confirm'
-        })
-        .then(answers => {
-          if (answers[deleteConfirmed]) {
-            argv.force = true
-            deleteOrgs(argv)
-          }
-        })
+      const { default: inquirer } = await import('inquirer')
+      const answers = await inquirer.prompt({
+        default: false,
+        message: 'Are you sure you want to delete all un-named non-default scratch orgs?',
+        name: deleteConfirmed,
+        type: 'confirm'
+      })
+      if (answers[deleteConfirmed]) {
+        argv.force = true
+        deleteOrgs(argv)
+      }
     } else {
       deleteOrgs(argv)
     }

@@ -9,8 +9,7 @@ module.exports = {
 
   builder: yargs => {
     yargs = yargsBuilder.builder(yargs)
-    yargs
-      .example('$0 list', '- Lists all connected orgs')
+    yargs.example('$0 list', '- Lists all connected orgs')
   },
 
   handler: argv => {

@@ -4,9 +4,8 @@ const yargsBuilder = require('../lib/yargsBuilder')
 const err = require('../helpers/errorOutput')
 const getResults = require('../helpers/compileResults')
 
-const fs = require('fs')
-const inquirer = require('inquirer')
-const joinPath = require('path').join
+const fs = require('node:fs')
+const joinPath = require('node:path').join
 const shell = require('shelljs')
 const xml2js = require('xml2js')
 
@@ -183,7 +182,7 @@ const getfilesToDelete = async argv => {
       if (argv.forcedelete) {
         if (flowDefs[flowFilename].activeVersion < flowVersion) {
           console.warn(
-            config.stars+ 'WARNING: Active flow version is less than latest flow file version.' + config.stars
+            config.stars + 'WARNING: Active flow version is less than latest flow file version.' + config.stars
           )
           console.warn(
             config.stars +
@@ -213,6 +212,7 @@ const getfilesToDelete = async argv => {
   }
 
   if (!argv.forcedelete) {
+    const { default: inquirer } = await import('inquirer')
     const answers = await inquirer.prompt(questions)
     for (let toDelete in answers) {
       if (answers[toDelete]) filesToDelete.push(toDelete + '.flow-meta.xml')
