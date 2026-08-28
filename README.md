@@ -10,8 +10,6 @@
 
 sfdx is a node module used to interact with Salesforce DX commands, hopefully in a more intuitive way than with the DX CLI itself. sfdx is meant to take some of the nuances of using Salesforce DX and make common operations easier.
 
-[If you find this useful and want to support further development, please consider donating to my Patreon to help me develop!](https://www.patreon.com/bePatron?u=15463482)
-
 ## Help / Documentation
 
 - [Node command API reference here](https://github.com/zandermax/sfdx/blob/master/docs/api.md).
