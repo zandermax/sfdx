@@ -4,11 +4,9 @@
     "name": "🎩 Ȥ𐋎𐊪ᗫ𐊤ᖇ ញαⵅᏇᗴᘂᘂ 🔱"
   },
   "dependencies": {
-    "@snyk/protect": "^1.1307.0",
     "inquirer": "^14.2.0",
     "jsonfile": "^6.2.1",
     "shelljs": "^0.10.0",
-    "snyk": "^1.1307.0",
     "xml2js": "^0.6.2"
   },
   "description": "Performs Salesforce DX operations with ease! Life is good.",
@@ -46,10 +44,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
-    "prepare": "npm run snyk-protect",
-    "snyk-protect": "snyk-protect",
     "test": "node --test"
   },
-  "snyk": true,
   "version": "1.8.100"
 }
